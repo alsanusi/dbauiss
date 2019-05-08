@@ -1,5 +1,5 @@
 <!-- Include Header -->
-<%- include /panel-layout/header-input.ejs %>
+<%- include panel-layout/header-input.ejs %>
 
 <!-- Include Body -->
     <!-- Start Header Top Area -->
@@ -251,13 +251,17 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-support"></i>
+                                            <i class="notika-icon notika-star"></i>
                                         </div>
-                                        <div class="bootstrap-select fm-cmp-mg">
-                                            <select class="selectpicker" name="jenisKelamin">
-                                                <option value="<%= jenisKelamin %>"><%= jenisKelamin %></option>
-                                                <option value="Pria">Pria</option>
-                                                <option value="Wanita">Wanita</option>
+                                        <div class="chosen-select-act">
+                                            <select class="chosen" name="jenisKelamin" value="<%= jenisKelamin %>">
+                                                <optgroup label="SELECTED">
+                                                    <option selected value="<%= jenisKelamin %>"><%= jenisKelamin %></option>
+                                                </optgroup>
+                                                <optgroup label="JENIS KELAMIN">
+                                                    <option value="Pria">Pria</option>
+                                                    <option value="Wanita">Wanita</option>
+                                                </optgroup>
                                             </select>
                                         </div>
                                     </div>
@@ -579,4 +583,4 @@
     <script src="/panel-assets/js/main.js"></script>
 
 <!-- Include Footer -->
-<%- include /panel-layout/footer.ejs %>    
+<%- include panel-layout/footer.ejs %>    
