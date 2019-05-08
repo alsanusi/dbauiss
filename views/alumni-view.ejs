@@ -1,0 +1,292 @@
+<!-- Include Header -->
+<%- include panel-layout/header.ejs %>
+
+<!-- Include Body -->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <a href="#"><img src="/panel-assets/img/logo/logo-auiss.png" alt="" style="height:40px"/></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><img src="/panel-assets/images/logout.png" style="height:30px"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+
+    <!-- Mobile Menu start -->
+    <!-- <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li><a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a href="#">Dashboard</a></li>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
+                                    <ul id="demodepart" class="collapse dropdown-header-top">
+                                        <li><a href="data-alumni.html">Data Alumni</a></li>
+                                        <li><a href="#">Data Siswa</a></li>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#demo" href="#">Forms</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a href="#">Input Data Alumni</a></li>
+                                        <li><a href="#">Input Data Siswa</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Mobile Menu end -->
+
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <li><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
+                        </li>
+                        <li class="active"><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Data Tables</a>
+                        </li>
+                        <li><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> Forms</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content custom-menu-content">
+                        <div id="Home" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/dashboard">Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="Tables" class="tab-pane active notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/alumni"><b>Data Alumni</b></a>
+                                </li>
+                                <li><a href="/student">Data Student</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="/alumni/input">Input Data Alumni</a>
+                                </li>
+                                <li><a href="/student/input">Input Data Student</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu area End-->
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Data Alumni</h2>
+                                        <p>Welcome to <span class="bread-ntd">AUISS DB</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+    
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>List Alumni Data</h2>
+                            <p>Find your Alumni Data.</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Lengkap</th>
+                                        <th>Email</th>
+                                        <th>Daerah Asal</th>
+                                        <th>Alamat</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Status</th>
+                                        <th>Jurusan</th>
+                                        <th>Detail Jurusan</th>
+                                        <th>Tahun Kelulusan</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Edit Data</th>
+                                        <th>Remove Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- Looping Alumni List -->
+                                <% if (data) { %>
+                                <% data.forEach(function(alumni){ %>
+                                    <tr>
+                                        <td><%= alumni.namaLengkap %></td>
+                                        <td><%= alumni.email %></td>
+                                        <td><%= alumni.daerahAsal %></td>
+                                        <td><%= alumni.alamat %></td>
+                                        <td><%= alumni.nomorTelepon %></td>
+                                        <td><%= alumni.jenisKelamin %></td>
+                                        <td><%= alumni.tanggalLahir %></td>
+                                        <td><%= alumni.status %></td>
+                                        <td><%= alumni.jurusan %></td>
+                                        <td><%= alumni.detailJurusan %></td>
+                                        <td><%= alumni.tahunKelulusan %></td>
+                                        <td><%- alumni.pekerjaan %></td>
+                                        <td>
+                                            <a href="/alumni/edit/<%= alumni.id %>"><button class="btn btn-primary notika-btn-primary">Edit Data</button></a>
+                                        </td>
+                                        <td>
+                                            <form action="/alumni/delete/<%= alumni.id %>" method="POST">
+                                                <!-- <button type="submit" name="_method" class="btn btn-primary notika-btn-primary" style="background-color:#d82436;">Remove Data</button> -->
+                                                <form method="post" action="/alumni/delete/<%= alumni.id %>" style="float:right">
+                                                    <button type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete this alumni data?')" class="btn btn-primary notika-btn-primary" style="background-color:#d82436;">Remove Data</button>                                                    
+                                                    <input type="hidden" name="_method" value="DELETE" />
+                                                </form>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                                <% } %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                    <!--Empty Data-->
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>Copyright © 2019 . All rights reserved. <b>MetroTech Digital Asia</b>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer area-->
+
+    <!-- jquery
+		============================================ -->
+    <script src="/panel-assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="/panel-assets/js/bootstrap.min.js"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="/panel-assets/js/wow.min.js"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="/panel-assets/js/jquery-price-slider.js"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="/panel-assets/js/owl.carousel.min.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="/panel-assets/js/jquery.scrollUp.min.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="/panel-assets/js/meanmenu/jquery.meanmenu.js"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="/panel-assets/js/counterup/jquery.counterup.min.js"></script>
+    <script src="/panel-assets/js/counterup/waypoints.min.js"></script>
+    <script src="/panel-assets/js/counterup/counterup-active.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="/panel-assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- sparkline JS
+		============================================ -->
+    <script src="/panel-assets/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="/panel-assets/js/sparkline/sparkline-active.js"></script>
+    <!-- flot JS
+		============================================ -->
+    <script src="/panel-assets/js/flot/jquery.flot.js"></script>
+    <script src="/panel-assets/js/flot/jquery.flot.resize.js"></script>
+    <script src="/panel-assets/js/flot/flot-active.js"></script>
+    <!-- knob JS
+		============================================ -->
+    <script src="/panel-assets/js/knob/jquery.knob.js"></script>
+    <script src="/panel-assets/js/knob/jquery.appear.js"></script>
+    <script src="/panel-assets/js/knob/knob-active.js"></script>
+    <!--  Chat JS
+		============================================ -->
+    <script src="/panel-assets/js/chat/jquery.chat.js"></script>
+    <!--  todo JS
+		============================================ -->
+    <script src="/panel-assets/js/todo/jquery.todo.js"></script>
+	<!--  wave JS
+		============================================ -->
+    <script src="/panel-assets/js/wave/waves.min.js"></script>
+    <script src="/panel-assets/js/wave/wave-active.js"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="/panel-assets/js/plugins.js"></script>
+    <!-- Data Table JS
+		============================================ -->
+    <script src="/panel-assets/js/data-table/jquery.dataTables.min.js"></script>
+    <script src="/panel-assets/js/data-table/data-table-act.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="/panel-assets/js/main.js"></script>
+
+<!-- Include Footer -->
+<%- include panel-layout/footer.ejs %>    

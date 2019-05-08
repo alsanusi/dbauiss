@@ -1,0 +1,69 @@
+<!-- Include Header -->
+<%- include login-layout/header.ejs %>    
+
+<!-- Include Body -->
+<div class="limiter">
+<div class="container-login100">
+    <div class="wrap-login100 p-t-50 p-b-90">
+        <form class="login100-form validate-form flex-sb flex-w" action="/login" method="POST">
+            <span class="login100-form-title p-b-51">
+                AUISS Database System
+                <div class="logo-top">
+                    <img src="/login-assets/images/auiss-icon.png" style="height: 135px;"/>
+                </div>
+            </span>
+
+            <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+                <input class="input100" type="text" name="username" placeholder="Username" value="<%= lg.username %>">
+                <span class="focus-input100"></span>
+            </div>
+            
+            
+            <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+                <input class="input100" type="password" name="pass" placeholder="Password" value="<%= lg.pass %>">
+                <span class="focus-input100"></span>
+            </div>
+            
+            <div class="container-login100-form-btn m-t-17">
+                <button class="login100-form-btn">
+                    Login
+                </button>
+            </div>
+
+            <!-- Validation -->
+            <div class="container-login100-form-btn m-t-17">
+                <div class="dis-center">
+                    <% if(messages.error){ %>
+                    <h2 style="color:#d82436; text-align:center;">Failed to Login!</h2>
+                    <p style="text-align:center; margin-top:5px"><%- messages.error %></p>
+                    <% } %>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="/login-assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/login-assets/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/login-assets/vendor/bootstrap/js/popper.js"></script>
+<script src="/login-assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/login-assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/login-assets/vendor/daterangepicker/moment.min.js"></script>
+<script src="/login-assets/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="/login-assets/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/login-assets/js/main.js"></script>
+
+<!-- Include Footer -->
+<%- include login-layout/footer.ejs %>

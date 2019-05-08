@@ -1,0 +1,874 @@
+<!-- Include Header -->
+<%- include panel-layout/header-input.ejs %>
+
+<!-- Include Body -->
+<!-- Start Header Top Area -->
+<div class="header-top-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="logo-area">
+                    <a href="#"><img src="/panel-assets/img/logo/logo-auiss.png" alt="" style="height:40px" /></a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="header-top-menu">
+                    <ul class="nav navbar-nav notika-top-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><img
+                                        src="/panel-assets/images/logout.png" style="height:30px"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Top Area -->
+
+<!-- Mobile Menu start -->
+<!-- <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li><a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a href="#">Dashboard</a></li>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
+                                    <ul id="demodepart" class="collapse dropdown-header-top">
+                                        <li><a href="data-alumni.html">Data Alumni</a></li>
+                                        <li><a href="#">Data Siswa</a></li>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#demo" href="#">Forms</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a href="#">Input Data Alumni</a></li>
+                                        <li><a href="#">Input Data Siswa</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<!-- Mobile Menu end -->
+
+<!-- Main Menu area start-->
+<div class="main-menu-area mg-tb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                    <li><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
+                    </li>
+                    <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Data Tables</a>
+                    </li>
+                    <li class="active"><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i>
+                            Forms</a>
+                    </li>
+                </ul>
+                <div class="tab-content custom-menu-content">
+                    <div id="Home" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/dashboard">Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/alumni">Data Alumni</a>
+                            </li>
+                            <li><a href="/student">Data Student</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Forms" class="tab-pane active notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="/alumni/input"><b>Input Data Alumni</b></a>
+                            </li>
+                            <li><a href="/student/input">Input Data Student</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Menu area End-->
+
+<!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>Data Alumni</h2>
+                                    <p>Welcome to <span class="bread-ntd">AUISS DB</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                            <div class="breadcomb-report">
+                                <button data-toggle="tooltip" data-placement="left" title="Download Report"
+                                    class="btn"><i class="notika-icon notika-sent"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+
+<!-- Form Element area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list mg-t-30">
+                    <div class="cmp-tb-hd">
+                        <h2>Alumni Data Input</h2>
+                        <p>Insert (<code>.data-alumni </code>) here.</p>
+                    </div>
+                    <!-- Validation Input -->
+                    <div class="cmp-tb-hd">
+                        <% if(messages.error){ %>
+                        <h2 style="color:#d82436">Failed to Input!</h2>
+                        <p>Insert the <b style="color:#d82436">data-alumni</b> correctly.</p>
+                        <p><%- messages.error %></p>
+                        <%} else if(messages.success){ %>
+                        <h2 style="color:#d82436">Success to Input!</h2>
+                        <p>Successfully insert the <b style="color:#d82436">data-alumni</b>.</p>
+                        <% } %>
+                    </div>
+                    <div class="row">
+                        <form name="input-alumni" action="/alumni/input" method="POST">
+                            <!-- Nama Lengkap -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-support"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="namaLengkap"
+                                            value="<%= namaLengkap %>" Placeholder="Nama Lengkap">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-mail"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="email" value="<%= email %>"
+                                            Placeholder="Alamat Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Daerah Asal -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-map"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="daerahAsal" value="<%= daerahAsal %>"
+                                            data-placeholder="Pilih Daerah">
+                                            <option value="Aceh">Aceh</option>
+                                            <option value="Sumatera Utara">Sumatera Utara</option>
+                                            <option value="Sumatera Barat">Sumatera Barat</option>
+                                            <option value="Riau">Riau</option>
+                                            <option value="Jambi">Jambi</option>
+                                            <option value="Sumatera Selatan">Sumatera Selatan</option>
+                                            <option value="Bengkulu">Bengkulu</option>
+                                            <option value="Lampung">Lampung</option>
+                                            <option value="Bangka Belitung">Kep. Bangka Belitung</option>
+                                            <option value="Kepulauan Riau">Kepulauan Riau</option>
+                                            <option value="Jakarta">Jakarta</option>
+                                            <option value="Jawa Barat">Jawa Barat</option>
+                                            <option value="Banten">Banten</option>
+                                            <option value="Jawa Tengah">Jawa Tengah</option>
+                                            <option value="Yogyakarta">Yogyakarta</option>
+                                            <option value="Jawa Timur">Jawa Timur</option>
+                                            <option value="Kalimantan Barat">Kalimantan Barat</option>
+                                            <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                                            <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                            <option value="Kalimantan Timur">Kalimantan Timur</option>
+                                            <option value="Kalimantan Utara">Kalimantan Utara</option>
+                                            <option value="Bali">Bali</option>
+                                            <option value="NTT">Nusa Tenggara Timur</option>
+                                            <option value="NTB">Nusa Tenggara Barat</option>
+                                            <option value="Sulawesi Utara">Sulawesi Utara</option>
+                                            <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                                            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                                            <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                                            <option value="Sulawesi Barat">Sulawesi Barat</option>
+                                            <option value="Gorontalo">Gorontalo</option>
+                                            <option value="Maluku">Maluku</option>
+                                            <option value="Maluku Utara">Maluku Utara</option>
+                                            <option value="Papua">Papua</option>
+                                            <option value="Papua Barat">Papua Barat</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Alamat -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-house"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="alamat" value="<%= alamat %>"
+                                            Placeholder="Alamat">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nomor Telepon -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-phone"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="nomorTelepon"
+                                            value="<%= nomorTelepon %>" Placeholder="Nomor Telepon">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Jenis Kelamin -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-support"></i>
+                                    </div>
+                                    <div class="bootstrap-select fm-cmp-mg">
+                                        <select class="selectpicker" name="jenisKelamin" value="<%= jenisKelamin %>">
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tanggal Lahir -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="date" class="form-control" name="tanggalLahir"
+                                            value="<%= tanggalLahir %>" Placeholder="Tanggal Lahir">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Status -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="bootstrap-select fm-cmp-mg">
+                                        <select onchange="alumniStatus(this)" class="selectpicker" name="status"
+                                            value="<%= status %>">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Undone">Undone</option>
+                                            <option value="Foundation">Foundation</option>
+                                            <option value="Diploma">Diploma</option>
+                                            <option value="Degree">Degree</option>
+                                            <option value="Master">Master</option>
+                                            <option value="PhD">PhD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Validation for Alumni Status -->
+                            <script>
+                                function alumniStatus(status) {
+                                    switch (status.value) {
+                                        case "Diploma":
+                                            document.getElementById("diploma").style.display = "block";
+                                            document.getElementById("degree").style.display = "none";
+                                            document.getElementById("master").style.display = "none";
+                                            document.getElementById("phd").style.display = "none";
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Degree":
+                                            document.getElementById("diploma").style.display = "none";
+                                            document.getElementById("degree").style.display = "block";
+                                            document.getElementById("master").style.display = "none";
+                                            document.getElementById("phd").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Master":
+                                            document.getElementById("diploma").style.display = "none";
+                                            document.getElementById("degree").style.display = "none";
+                                            document.getElementById("master").style.display = "block";
+                                            document.getElementById("phd").style.display = "none";
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "PhD":
+                                            document.getElementById("diploma").style.display = "none";
+                                            document.getElementById("degree").style.display = "none";
+                                            document.getElementById("master").style.display = "none";
+                                            document.getElementById("phd").style.display = "block";
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Undone":
+                                            document.getElementById("diploma").style.display = "none";
+                                            document.getElementById("degree").style.display = "none";
+                                            document.getElementById("master").style.display = "none";
+                                            document.getElementById("phd").style.display = "none";
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            document.getElementById("tahunKelulusan").style.display = "none";
+                                            break;
+                                        default:
+                                            document.getElementById("diploma").style.display = "none";
+                                            document.getElementById("degree").style.display = "none";
+                                            document.getElementById("master").style.display = "none";
+                                            document.getElementById("phd").style.display = "none";
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                    }
+                                }
+                            </script>
+                            <!-- Diploma - Jurusan -->
+                            <div id="diploma" style="display:none" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Information & Communication Technology">Information &
+                                                Communication Technology</option>
+                                            <option
+                                                value="Information & Communication Technology with specialism in Software Engineering">
+                                                Information & Communication Technology with specialism in Software
+                                                Engineering</option>
+                                            <option
+                                                value="Information & Communication Technology with a specialism in Data Informatics">
+                                                Information & Communication Technology with a specialism in Data
+                                                Informatics</option>
+                                            <option
+                                                value="Information & Communication Technology with a specialism in Interactive Technology">
+                                                Information & Communication Technology with a specialism in Interactive
+                                                Technology</option>
+                                            <option value="Business with Information Technology">Business with
+                                                Information Technology</option>
+                                            <option value="Business Administration">Business Administration</option>
+                                            <option value="Accounting">Accounting</option>
+                                            <option value="Design and Media">Design and Media</option>
+                                            <option value="International Studies">International Studies</option>
+                                            <option value="Electrical and Electronic Engineering">Electrical and
+                                                Electronic Engineering</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Degree - Jurusan -->
+                            <div id="degree" style="display:none" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select onchange="alumniDetailJurusan(this)" class="chosen" name="jurusan"
+                                            data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Computing, Technology & Games Development">Computing,
+                                                Technology & Games Development</option>
+                                            <option value="Engineering">Engineering</option>
+                                            <option value="Business, Management, Marketing, Tourism & Media">Business,
+                                                Management, Marketing, Tourism & Media</option>
+                                            <option value="Accounting, Banking, Finance and Actuarial">Accounting,
+                                                Banking, Finance and Actuarial</option>
+                                            <option value="Animation & Visual Effects">Animation & Visual Effects
+                                            </option>
+                                            <option value="Industrial Design & Brand Management">Industrial Design &
+                                                Brand Management</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Master - Jurusan -->
+                            <div id="master" style="display:none" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="jurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Computing">Computing (By Research)</option>
+                                            <option value="Data Science and Business Analytics">Data Science and
+                                                Business Analytics</option>
+                                            <option value="Business Administration">Business Administration</option>
+                                            <option value="Philosophy in Management">Philosophy in Management</option>
+                                            <option value="Project Management">Project Management</option>
+                                            <option value="Business Administration">Business Administration</option>
+                                            <option value="Technology Management">Technology Management</option>
+                                            <option value="Information Technology Management">Information Technology
+                                                Management</option>
+                                            <option value="Software Engineering">Software Engineering</option>
+                                            <option value="Global Marketing Management">Global Marketing Management
+                                            </option>
+                                            <option value="International Business Communications">International Business
+                                                Communications</option>
+                                            <option value="Finance">Finance</option>
+                                            <option value="Accounting">Accounting</option>
+                                            <option value="Accounting in Forensic Analysis">Accounting in Forensic
+                                                Analysis</option>
+                                            <option value="Philosophy in Engineering">Philosophy in Engineering</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- PhD - Jurusan -->
+                            <div id="phd" style="display:none" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="jurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Computing">Computing</option>
+                                            <option value="Engineering">Engineering</option>
+                                            <option value="Finance">Finance</option>
+                                            <option value="Management">Management</option>
+                                            <option value="Technology">Technology</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Validation for Alumni Status -->
+                            <script>
+                                function alumniDetailJurusan(jurusan) {
+                                    switch (jurusan.value) {
+                                        case "Computing, Technology & Games Development":
+                                            document.getElementById("degreeComputing").style.display = "block";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Engineering":
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "block";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Business, Management, Marketing, Tourism & Media":
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "block";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Accounting, Banking, Finance and Actuarial":
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "block";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Animation & Visual Effects":
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "block";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                        case "Industrial Design & Brand Management":
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "block";
+                                            break;
+                                        default:
+                                            document.getElementById("degreeComputing").style.display = "none";
+                                            document.getElementById("degreeEngineering").style.display = "none";
+                                            document.getElementById("degreeBusiness").style.display = "none";
+                                            document.getElementById("degreeAccounting").style.display = "none";
+                                            document.getElementById("degreeAnimation").style.display = "none";
+                                            document.getElementById("degreeIndustrial").style.display = "none";
+                                            break;
+                                    }
+                                }
+                            </script>
+                            <!-- Detail Jurusan - Degree Computing -->
+                            <div id="degreeComputing" style="display:none"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="detailJurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Information Technology">Information Technology</option>
+                                            <option
+                                                value="Information Technology with specialism in Information Systems Security">
+                                                Information Technology with specialism in Information Systems Security
+                                            </option>
+                                            <option value="Information Technology with specialism in Network Computing">
+                                                Information Technology with specialism in Network Computing</option>
+                                            <option value="Information Technology with specialism in Mobile Technology">
+                                                Information Technology with specialism in Mobile Technology</option>
+                                            <option value="Information Technology with specialism in Cloud Computing">
+                                                Information Technology with specialism in Cloud Computing</option>
+                                            <option
+                                                value="Information Technology with specialism in Business Information Systems">
+                                                Information Technology with specialism in Business Information Systems
+                                            </option>
+                                            <option
+                                                value="Information Technology with specialism in Internet of Things">
+                                                Information Technology with specialism in Internet of Things</option>
+                                            <option value="Computer Science">Computer Science</option>
+                                            <option value="Computer Science with a specialism in Data Analytics">
+                                                Computer Science with a specialism in Data Analytics</option>
+                                            <option value="Computer Science with a specialism in Digital Forensics">
+                                                Computer Science with a specialism in Digital Forensics</option>
+                                            <option value="Software Engineering">Software Engineering</option>
+                                            <option value="Computer Science Intelligent System">Computer Science
+                                                Intelligent System</option>
+                                            <option value="Computer Games Development">Computer Games Development
+                                            </option>
+                                            <option value="Multimedia Technology">Multimedia Technology</option>
+                                            <option value="Multimedia Technology with a specialism in VR/AR">Multimedia
+                                                Technology with a specialism in VR/AR</option>
+                                            <option value="Business Information Technology">Business Information
+                                                Technology</option>
+                                            <option value="Cyber Security">Cyber Security</option>
+                                            <option value="Forensic Computing">Forensic Computing</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Detail Jurusan - Degree Engineering -->
+                            <div id="degreeEngineering" style="display:none"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="detailJurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Electrical & Electronic Engineering">Electrical & Electronic
+                                                Engineering</option>
+                                            <option value="Mechatronic Engineering">Mechatronic Engineering</option>
+                                            <option value="Telecommunication Engineering">Telecommunication Engineering
+                                            </option>
+                                            <option value="Computer Engineering">Computer Engineering</option>
+                                            <option value="Petroleum Engineering">Petroleum Engineering</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Detail Jurusan - Degree Business, Management, Marketing, Tourism & Media -->
+                            <div id="degreeBusiness" style="display:none"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="detailJurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Business Management">Business Management</option>
+                                            <option value="Business Management with specialism in E-Business">Business
+                                                Management with specialism in E-Business</option>
+                                            <option value="International Business Management">International Business
+                                                Management</option>
+                                            <option value="Marketing Management">Marketing Management</option>
+                                            <option value="Marketing Management with a specialism in Digital Marketing">
+                                                Marketing Management with a specialism in Digital Marketing</option>
+                                            <option value="Human Resource Management">Human Resource Management</option>
+                                            <option value="Tourism Management">Tourism Management</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Detail Jurusan - Degree Accounting, Banking, Finance and Actuarial -->
+                            <div id="degreeAccounting" style="display:none"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="detailJurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Accounting and Finance">Accounting and Finance</option>
+                                            <option
+                                                value="Accounting and Finance with a specialism in Forensic Accounting">
+                                                Accounting and Finance with a specialism in Forensic Accounting</option>
+                                            <option value="Accounting and Finance with a specialism in Taxation">
+                                                Accounting and Finance with a specialism in Taxation</option>
+                                            <option
+                                                value="Accounting and Finance with a specialism in Forex and Investments">
+                                                Accounting and Finance with a specialism in Forex and Investments
+                                            </option>
+                                            <option value="Accounting and Finance with a specialism in Internal Audit">
+                                                Accounting and Finance with a specialism in Internal Audit</option>
+                                            <option value="Banking and Finance">Banking and Finance</option>
+                                            <option
+                                                value="Banking and Finance with a specialism in Financial Technology">
+                                                Banking and Finance with a specialism in Financial Technology</option>
+                                            <option
+                                                value="Banking and Finance with a specialism in Investments and Risk Management">
+                                                Banking and Finance with a specialism in Investments and Risk Management
+                                            </option>
+                                            <option value="Actuarial Studies">Actuarial Studies</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Detail Jurusan - Degree Animation & Visual Effects -->
+                            <div id="degreeAnimation" style="display:none"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="detailJurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Animation">Animation</option>
+                                            <option value="VFX: Visual Effects and Concept Design">VFX: Visual Effects
+                                                and Concept Design</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Detail Jurusan - Degree Industrial Design & Brand Management -->
+                            <div id="degreeIndustrial" style="display:none"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="chosen-select-act fm-cmp-mg">
+                                        <select class="chosen" name="detailJurusan" data-placeholder="Jurusan">
+                                            <option disabled selected>Please Select</option>
+                                            <option value="Product Design">Product Design</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tahun Kelulusan -->
+                            <div id="tahunKelulusan" style="display:block"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="tahunKelulusan"
+                                            value="<%= tahunKelulusan %>" Placeholder="Tahun Kelulusan">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pekerjaan -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-star"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="pekerjaan"
+                                            value="<%= pekerjaan %>" Placeholder="Pekerjaan">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Submit -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <div class="btn-demo-notika">
+                                            </br>
+                                            <button type="submit" name="Submit"
+                                                class="btn btn-primary notika-btn-primary">Input Alumni Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form Element area End-->
+
+<!-- Start Footer area-->
+<div class="footer-copyright-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="footer-copy-right">
+                    <p>Copyright © 2019 . All rights reserved. <b>MetroTech Digital Asia</b>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Footer area-->
+
+<!-- jquery
+		============================================ -->
+<script src="/panel-assets/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- bootstrap JS
+		============================================ -->
+<script src="/panel-assets/js/bootstrap.min.js"></script>
+<!-- wow JS
+		============================================ -->
+<script src="/panel-assets/js/wow.min.js"></script>
+<!-- price-slider JS
+		============================================ -->
+<script src="/panel-assets/js/jquery-price-slider.js"></script>
+<!-- owl.carousel JS
+		============================================ -->
+<script src="/panel-assets/js/owl.carousel.min.js"></script>
+<!-- scrollUp JS
+		============================================ -->
+<script src="/panel-assets/js/jquery.scrollUp.min.js"></script>
+<!-- meanmenu JS
+		============================================ -->
+<script src="/panel-assets/js/meanmenu/jquery.meanmenu.js"></script>
+<!-- counterup JS
+		============================================ -->
+<script src="/panel-assets/js/counterup/jquery.counterup.min.js"></script>
+<script src="/panel-assets/js/counterup/waypoints.min.js"></script>
+<script src="/panel-assets/js/counterup/counterup-active.js"></script>
+<!-- mCustomScrollbar JS
+		============================================ -->
+<script src="/panel-assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- sparkline JS
+		============================================ -->
+<script src="/panel-assets/js/sparkline/jquery.sparkline.min.js"></script>
+<script src="/panel-assets/js/sparkline/sparkline-active.js"></script>
+<!-- flot JS
+		============================================ -->
+<script src="/panel-assets/js/flot/jquery.flot.js"></script>
+<script src="/panel-assets/js/flot/jquery.flot.resize.js"></script>
+<script src="/panel-assets/js/flot/flot-active.js"></script>
+<!-- knob JS
+		============================================ -->
+<script src="/panel-assets/js/knob/jquery.knob.js"></script>
+<script src="/panel-assets/js/knob/jquery.appear.js"></script>
+<script src="/panel-assets/js/knob/knob-active.js"></script>
+<!-- Input Mask JS
+		============================================ -->
+<script src="/panel-assets/js/jasny-bootstrap.min.js"></script>
+<!-- icheck JS
+		============================================ -->
+<script src="/panel-assets/js/icheck/icheck.min.js"></script>
+<script src="/panel-assets/js/icheck/icheck-active.js"></script>
+<!-- rangle-slider JS
+		============================================ -->
+<script src="/panel-assets/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="/panel-assets/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+<script src="/panel-assets/js/rangle-slider/rangle-active.js"></script>
+<!-- datapicker JS
+		============================================ -->
+<script src="/panel-assets/js/datapicker/bootstrap-datepicker.js"></script>
+<script src="/panel-assets/js/datapicker/datepicker-active.js"></script>
+<!-- bootstrap select JS
+		============================================ -->
+<script src="/panel-assets/js/bootstrap-select/bootstrap-select.js"></script>
+<!--  color-picker JS
+		============================================ -->
+<script src="/panel-assets/js/color-picker/farbtastic.min.js"></script>
+<script src="/panel-assets/js/color-picker/color-picker.js"></script>
+<!--  notification JS
+		============================================ -->
+<script src="/panel-assets/js/notification/bootstrap-growl.min.js"></script>
+<script src="/panel-assets/js/notification/notification-active.js"></script>
+<!--  summernote JS
+		============================================ -->
+<script src="/panel-assets/js/summernote/summernote-updated.min.js"></script>
+<script src="/panel-assets/js/summernote/summernote-active.js"></script>
+<!-- dropzone JS
+		============================================ -->
+<script src="/panel-assets/js/dropzone/dropzone.js"></script>
+<!--  wave JS
+		============================================ -->
+<script src="/panel-assets/js/wave/waves.min.js"></script>
+<script src="/panel-assets/js/wave/wave-active.js"></script>
+<!--  chosen JS
+		============================================ -->
+<script src="/panel-assets/js/chosen/chosen.jquery.js"></script>
+<!--  Chat JS
+		============================================ -->
+<script src="/panel-assets/js/chat/jquery.chat.js"></script>
+<!--  todo JS
+		============================================ -->
+<script src="/panel-assets/js/todo/jquery.todo.js"></script>
+<!-- plugins JS
+		============================================ -->
+<script src="/panel-assets/js/plugins.js"></script>
+<!-- main JS
+		============================================ -->
+<script src="/panel-assets/js/main.js"></script>
+
+<!-- Include Footer -->
+<%- include panel-layout/footer.ejs %>
