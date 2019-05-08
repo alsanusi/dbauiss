@@ -16,6 +16,7 @@ app.get('/', function(req, res){
                     title: 'Alumni List',
                     data: rows
                 })
+                console.log(rows.length)
             }
         })
     })

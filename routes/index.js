@@ -46,8 +46,24 @@ app.post('/login', redirectDashboard, function(req, res){
 })
 
 app.get('/dashboard', redirectLogin, function(req, res) {
-    console.log(req.session)
-	res.render('dashboard')
+    req.getConnection(function(error, con){
+        console.log(req.session)
+        // Alumni Data Load
+        con.query('SELECT * FROM alumniData ORDER BY id DESC', function(err, rows, fields){
+            if(err){
+                req.flash('error', err)
+                res.render('dashboard', {
+                    title: 'Total Alumni Data',
+                    data: '-'
+                })
+            } else {
+                res.render('dashboard', {
+                    alumniTitle: 'Total Alumni Data',
+                    alumniData: rows.length
+                })
+            }
+        })
+    })
 })
 
 app.post('/logout', redirectLogin, function(req, res){
