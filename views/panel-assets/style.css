@@ -4063,8 +4063,8 @@ textarea.auto-size {
     padding: 6px 25px;
 }
 .chosen-container-single .chosen-search input[type="text"]{
-	background: white url(chosen-sprite.png) no-repeat 100% -20px;
-    background: url(chosen-sprite.png) no-repeat 100% -45px;
+	background: white url(img/chosen-sprite.png) no-repeat 100% -20px;
+    background: url(img/chosen-sprite.png) no-repeat 100% -45px;
 }
 .modal-footer .btn-primary[disabled]:focus, .modal-footer .btn-primary[disabled]:hover{
 	background: #00c292;

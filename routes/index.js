@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const mysql = require('promise-mysql')
+const config = require('../config')
 
 //Admin Credentials
 const adminCredentials = { 
@@ -45,21 +47,43 @@ app.post('/login', redirectDashboard, function(req, res){
     }
 })
 
-app.get('/dashboard', redirectLogin, function(req, res) {
-    req.getConnection(function(error, con){
+//
+app.get('/dashboard', function(req, res){
+    //Variable
+    var aData, sData, aDegreeData
+    //Promise
+    mysql.createConnection(config.database).then(function(conn){
+        //Session
         console.log(req.session)
-        // Alumni Data Load
-        con.query('SELECT * FROM alumniData ORDER BY id DESC', function(err, rows, fields){
+        conn.query('SELECT * FROM alumniData').then( rows => {
+            aData = rows;
+            //Total Alumni - Degree
+            aDegreeData = aData.filter(obj => {
+                return obj.status === "Degree"
+            })
+            return conn.query('SELECT * FROM studentData')
+        })
+        .then( rows => {
+            sData = rows;
+            return conn.end()
+        })
+        .then(() => {
+            res.render('dashboard', {
+                alumniTitle: 'Total Alumni Data',
+                alumniData: aData.length,
+                alumniDegreeData: aDegreeData.length,
+                studentTitle: 'Total Student Data',
+                studentData: sData.length
+            })
+        })
+        .catch( err => {
+            console.log(err)
             if(err){
-                req.flash('error', err)
                 res.render('dashboard', {
-                    title: 'Total Alumni Data',
-                    data: '-'
-                })
-            } else {
-                res.render('dashboard', {
-                    alumniTitle: 'Total Alumni Data',
-                    alumniData: rows.length
+                    alumniTitle: '',
+                    alumniData: '',
+                    studentTitle: '',
+                    studentData: ''
                 })
             }
         })

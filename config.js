@@ -4,7 +4,7 @@ var config = {
         user: 'root',
         password: 'Sesar181196',
         port: 3306,
-        db: 'dbAuiss'
+        database: 'dbAuiss'
     },
     server: {
         host: '127.0.0.1',
