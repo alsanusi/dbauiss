@@ -26,6 +26,36 @@ const redirectDashboard = (req, res, next) => {
     }
 }
 
+//Retrieve Student Data
+//Student Degreee in IT
+function getStudentDegreeInIT(sData){
+    var sDegreeIT
+    sDegreeIT = sData.filter(obj => {
+        return obj.jurusan === "Computing, Technology & Games Development"
+    })
+    return sDegreeIT.length
+}
+
+//Student Degree in Business
+function getStudentDegreeInBusiness(sData){
+    var sDegreeBusiness
+    sDegreeBusiness = sData.filter(obj => {
+        return obj.jurusan === "Business, Management, Marketing, Tourism & Media"
+    })
+    return sDegreeBusiness.length
+}
+
+//Student Degree in Engineering
+function getStudentDegreeInEngineering(sData){
+    var sDegreeEngineering
+    sDegreeEngineering = sData.filter(obj => {
+        return obj.jurusan === "Engineering"
+    })
+    return sDegreeEngineering.length
+}
+
+//Retrieve Alumni Data
+
 app.get('/', function(req, res) {
 	res.render('index', {lg: req.body})
 })
@@ -37,7 +67,6 @@ app.post('/login', redirectDashboard, function(req, res){
     if (username == adminCredentials.username && password == adminCredentials.pass) {
         console.log("Success Login!")
         req.session.userId = adminCredentials.id
-        console.log(req.session.userId)
         return res.redirect('/dashboard')
     } else {
         var error_msg = "Wrong Username and Password"
@@ -47,33 +76,31 @@ app.post('/login', redirectDashboard, function(req, res){
     }
 })
 
-//
 app.get('/dashboard', function(req, res){
     //Variable
-    var aData, sData, aDegreeData
+    var aData, sData
     //Promise
     mysql.createConnection(config.database).then(function(conn){
         //Session
         console.log(req.session)
         conn.query('SELECT * FROM alumniData').then( rows => {
             aData = rows;
-            //Total Alumni - Degree
-            aDegreeData = aData.filter(obj => {
-                return obj.status === "Degree"
-            })
             return conn.query('SELECT * FROM studentData')
         })
         .then( rows => {
             sData = rows;
+            getStudentDegreeInIT(sData)
+            getStudentDegreeInBusiness(sData)
+            getStudentDegreeInEngineering(sData)
             return conn.end()
         })
         .then(() => {
             res.render('dashboard', {
-                alumniTitle: 'Total Alumni Data',
                 alumniData: aData.length,
-                alumniDegreeData: aDegreeData.length,
-                studentTitle: 'Total Student Data',
-                studentData: sData.length
+                studentData: sData.length,
+                studentDegreeITData: getStudentDegreeInIT(sData),
+                studentDegreeBusinessData: getStudentDegreeInBusiness(sData),
+                studentDegreeEngineering: getStudentDegreeInEngineering(sData),
             })
         })
         .catch( err => {
