@@ -54,7 +54,96 @@ function getStudentDegreeInEngineering(sData){
     return sDegreeEngineering.length
 }
 
+//Get Overall Data - Student Foundation
+function getStudentDataFoundation(sData){
+    var sDataFoundation
+    sDataFoundation = sData.filter(obj => {
+        return obj.status === "Foundation"
+    })
+    return sDataFoundation.length
+}
+
+//Get Overall Data - Student Diploma
+function getStudentDataDiploma(sData){
+    var sDataDiploma
+    sDataDiploma = sData.filter(obj => {
+        return obj.status === "Diploma"
+    })
+    return sDataDiploma.length
+}
+
+//Get Overall Data - Student Degree
+function getStudentDataDegree(sData){
+    var sDataDegree
+    sDataDegree = sData.filter(obj => {
+        return obj.status === "Degree"
+    })
+    return sDataDegree.length
+}
+
+//Get Overall Data - Student Master
+function getStudentDataMaster(sData){
+    var sDataMaster
+    sDataMaster = sData.filter(obj => {
+        return obj.status === "Master"
+    })
+    return sDataMaster.length
+}
+
+//Get Overall Data - Student PhD
+function getStudentDataPhD(sData){
+    var sDataPhd
+    sDataPhd = sData.filter(obj => {
+        return obj.status === "PhD"
+    })
+    return sDataPhd.length
+}
+
 //Retrieve Alumni Data
+//Get Overall Data - Alumni Foundation
+function getAlumniDataFoundation(aData){
+    var aDataFoundation
+    aDataFoundation = aData.filter(obj => {
+        return obj.status === "Foundation"
+    })
+    return aDataFoundation.length
+}
+
+//Get Overall Data - Alumni Diploma
+function getAlumniDataDiploma(aData){
+    var aDataDiploma
+    aDataDiploma = aData.filter(obj => {
+        return obj.status === "Diploma"
+    })
+    return aDataDiploma.length
+}
+
+//Get Overall Data - Alumni Degree
+function getAlumniDataDegree(aData){
+    var aDataDegree
+    aDataDegree = aData.filter(obj => {
+        return obj.status === "Degree"
+    })
+    return aDataDegree.length
+}
+
+//Get Overall Data - Alumni Master
+function getAlumniDataMaster(aData){
+    var aDataMaster
+    aDataMaster = aData.filter(obj => {
+        return obj.status === "Master"
+    })
+    return aDataMaster.length
+}
+
+//Get Overall Data - Alumni PhD
+function getAlumniDataPhD(aData){
+    var aDataPhD
+    aDataPhD = aData.filter(obj => {
+        return obj.status === "PhD"
+    })
+    return aDataPhD.length
+}
 
 app.get('/', function(req, res) {
 	res.render('index', {lg: req.body})
@@ -85,6 +174,12 @@ app.get('/dashboard', function(req, res){
         console.log(req.session)
         conn.query('SELECT * FROM alumniData').then( rows => {
             aData = rows;
+            // Alumni Data - Overall
+            getAlumniDataFoundation(aData)
+            getAlumniDataDiploma(aData)
+            getAlumniDataDegree(aData)
+            getAlumniDataMaster(aData)
+            getAlumniDataPhD(aData)
             return conn.query('SELECT * FROM studentData')
         })
         .then( rows => {
@@ -92,6 +187,12 @@ app.get('/dashboard', function(req, res){
             getStudentDegreeInIT(sData)
             getStudentDegreeInBusiness(sData)
             getStudentDegreeInEngineering(sData)
+            // Student Data - Overall
+            getStudentDataFoundation(sData)
+            getStudentDataDiploma(sData)
+            getStudentDataDegree(sData)
+            getStudentDataMaster(sData)
+            getStudentDataPhD(sData)
             return conn.end()
         })
         .then(() => {
@@ -101,6 +202,18 @@ app.get('/dashboard', function(req, res){
                 studentDegreeITData: getStudentDegreeInIT(sData),
                 studentDegreeBusinessData: getStudentDegreeInBusiness(sData),
                 studentDegreeEngineering: getStudentDegreeInEngineering(sData),
+                // Overall Student Data
+                studentDataFoundation: getStudentDataFoundation(sData),
+                studentDataDiploma: getStudentDataDiploma(sData),
+                studentDataDegree: getStudentDataDegree(sData),
+                studentDataMaster: getStudentDataMaster(sData),
+                studentDataPhD: getStudentDataPhD(sData),
+                // Overal Alumni Data
+                alumniDataFoundation: getAlumniDataFoundation(aData),
+                alumniDataDiploma: getAlumniDataDiploma(aData),
+                alumniDataDegree: getAlumniDataDegree(aData),
+                alumniDataMaster: getAlumniDataMaster(aData),
+                alumniDataPhD: getAlumniDataPhD(aData),
             })
         })
         .catch( err => {

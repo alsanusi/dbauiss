@@ -145,7 +145,7 @@
                         <div class="past-statistic-an">
                             <div class="past-statistic-ctn">
                                 <h3><span class="counter"><%= studentDegreeITData %></span></h3>
-                                <p>Degree in <b>Information Technology</b>.</p>
+                                <p>Degree in <b>Information Technology</b>. - Include: <b>Software Engineering</b> and <b>Multimedia</b></p>
                             </div>
                             <div class="past-statistic-graph">
                                 <div class="stats-bar"></div>
@@ -180,18 +180,18 @@
     <div class="notika-email-post-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                <div class="col-lg-6 col-md-8 col-sm-7 col-xs-12">
                     <div class="email-statis-inner notika-shadow">
                         <div class="email-ctn-round">
                             <div class="email-rdn-hd">
-								<h2>Email Statistics</h2>
+								<h2>Alumni Job Statistic</h2>
 							</div>
                             <div class="email-statis-wrap">
                                 <div class="email-round-nock">
                                     <input type="text" class="knob" value="0" data-rel="55" data-linecap="round" data-width="130" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true">
                                 </div>
                                 <div class="email-ctn-nock">
-                                    <p>Total Emails Sent</p>
+                                    <p>Information Technology</p>
                                 </div>
                             </div>
                             <div class="email-round-gp">
@@ -200,7 +200,7 @@
                                         <input type="text" class="knob" value="0" data-rel="75" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
                                     </div>
                                     <div class="email-ctn-nock">
-                                        <p>Bounce Rate</p>
+                                        <p>Business</p>
                                     </div>
                                 </div>
                                 <div class="email-round-pro">
@@ -208,7 +208,7 @@
                                         <input type="text" class="knob" value="0" data-rel="35" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
                                     </div>
                                     <div class="email-ctn-nock">
-                                        <p>Total Opened</p>
+                                        <p>Multimedia</p>
                                     </div>
                                 </div>
                                 <div class="email-round-pro sm-res-ds-n lg-res-mg-bl">
@@ -216,30 +216,29 @@
                                         <input type="text" class="knob" value="0" data-rel="45" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
                                     </div>
                                     <div class="email-ctn-nock">
-                                        <p>Total Ignored</p>
+                                        <p>Engineering</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Overal Student Status -->
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
                     <div class="recent-post-wrapper notika-shadow sm-res-mg-t-30 tb-res-ds-n dk-res-ds">
                         <div class="recent-post-ctn">
-                            <div class="recent-post-title">
-                                <h2>Recent Posts</h2>
+                            <div class="past-day-statis">
+                                <h2>Overal Student Status</h2>
+                                <p>Student Data based on Status.</p>
                             </div>
                         </div>
                         <div class="recent-post-items">
                             <div class="recent-post-signle rct-pt-mg-wp">
                                 <a href="#">
                                     <div class="recent-post-flex">
-                                        <div class="recent-post-img">
-                                            <img src="panel-assets/img/post/2.jpg" alt="" />
-                                        </div>
                                         <div class="recent-post-it-ctn">
-                                            <h2>Smith</h2>
-                                            <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                            <h2>Foundation</h2>
+                                            <p><%= studentDataFoundation %> Student</p>
                                         </div>
                                     </div>
                                 </a>
@@ -247,12 +246,9 @@
                             <div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rct-pt-mg">
-                                        <div class="recent-post-img">
-                                            <img src="panel-assets/img/post/1.jpg" alt="" />
-                                        </div>
                                         <div class="recent-post-it-ctn">
-                                            <h2>John Deo</h2>
-                                            <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                            <h2>Diploma</h2>
+                                            <p><%= studentDataDiploma %> Student</p>
                                         </div>
                                     </div>
                                 </a>
@@ -260,12 +256,9 @@
                             <div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rct-pt-mg">
-                                        <div class="recent-post-img">
-                                            <img src="panel-assets/img/post/4.jpg" alt="" />
-                                        </div>
                                         <div class="recent-post-it-ctn">
-                                            <h2>Malika</h2>
-                                            <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                            <h2>Degree</h2>
+                                            <p><%= studentDataDegree %> Student</p>
                                         </div>
                                     </div>
                                 </a>
@@ -273,12 +266,9 @@
                             <div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rct-pt-mg">
-                                        <div class="recent-post-img">
-                                            <img src="panel-assets/img/post/2.jpg" alt="" />
-                                        </div>
                                         <div class="recent-post-it-ctn">
-                                            <h2>Smith</h2>
-                                            <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                            <h2>Master</h2>
+                                            <p><%= studentDataMaster %> Student</p>
                                         </div>
                                     </div>
                                 </a>
@@ -286,21 +276,72 @@
                             <div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rct-pt-mg">
-                                        <div class="recent-post-img">
-                                            <img src="panel-assets/img/post/1.jpg" alt="" />
-                                        </div>
                                         <div class="recent-post-it-ctn">
-                                            <h2>John Deo</h2>
-                                            <p>Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</p>
+                                            <h2>PhD</h2>
+                                            <p><%= studentDataPhD %> Student</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Overal Alumni Status -->
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                    <div class="recent-post-wrapper notika-shadow sm-res-mg-t-30 tb-res-ds-n dk-res-ds">
+                        <div class="recent-post-ctn">
+                            <div class="past-day-statis">
+                                <h2>Overal Alumni Status</h2>
+                                <p>Alumni Data based on Status.</p>
+                            </div>
+                        </div>
+                        <div class="recent-post-items">
+                            <div class="recent-post-signle rct-pt-mg-wp">
+                                <a href="#">
+                                    <div class="recent-post-flex">
+                                        <div class="recent-post-it-ctn">
+                                            <h2>Foundation</h2>
+                                            <p><%= alumniDataFoundation %> Alumni</p>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="recent-post-signle">
                                 <a href="#">
-                                    <div class="recent-post-flex rc-ps-vw">
-                                        <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                    <div class="recent-post-flex rct-pt-mg">
+                                        <div class="recent-post-it-ctn">
+                                            <h2>Diploma</h2>
+                                            <p><%= alumniDataDiploma %> Alumni</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="recent-post-signle">
+                                <a href="#">
+                                    <div class="recent-post-flex rct-pt-mg">
+                                        <div class="recent-post-it-ctn">
+                                            <h2>Degree</h2>
+                                            <p><%= alumniDataDegree %> Alumni</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="recent-post-signle">
+                                <a href="#">
+                                    <div class="recent-post-flex rct-pt-mg">
+                                        <div class="recent-post-it-ctn">
+                                            <h2>Master</h2>
+                                            <p><%= alumniDataMaster %> Alumni</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="recent-post-signle">
+                                <a href="#">
+                                    <div class="recent-post-flex rct-pt-mg">
+                                        <div class="recent-post-it-ctn">
+                                            <h2>PhD</h2>
+                                            <p><%= alumniDataPhD %> Alumni</p>
                                         </div>
                                     </div>
                                 </a>
