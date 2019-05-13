@@ -110,7 +110,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn">
-                            <h2><span class="counter"><%= alumniData %></span></h2>
+                            <h2><span class="counter"><%= alumniData %></span> Alumni</h2>
                             <p>Total of <b>Alumni</b> Data.</p>
                         </div>
                         <div class="sparkline-bar-stats1">9,4,8,6,5,6,4,8,3,5,9,5</div>
@@ -121,7 +121,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn">
-                            <h2><span class="counter"><%= studentData %></span></h2>
+                            <h2><span class="counter"><%= studentData %></span> Student</h2>
                             <p>Total of <b>Student</b> Data.</p>
                         </div>
                         <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
@@ -144,8 +144,8 @@
                         </div>
                         <div class="past-statistic-an">
                             <div class="past-statistic-ctn">
-                                <h3><span class="counter"><%= studentDegreeITData %></span></h3>
-                                <p>Degree in <b>Information Technology</b>. - Include: <b>Software Engineering</b> and <b>Multimedia</b></p>
+                                <h3><span class="counter"><%= studentDegreeITData %></span> Student</h3>
+                                <p>Degree in <b>Information Technology</b>. -Include: <b>Software Engineering</b> and <b>Multimedia</b></p>
                             </div>
                             <div class="past-statistic-graph">
                                 <div class="stats-bar"></div>
@@ -153,8 +153,8 @@
                         </div>
                         <div class="past-statistic-an">
                             <div class="past-statistic-ctn">
-                                <h3><span class="counter"><%= studentDegreeBusinessData %></span></h3>
-                                <p>Degree in <b>Business</b>.</p>
+                                <h3><span class="counter"><%= studentDegreeBusinessData %></span> Student</h3>
+                                <p>Degree in <b>Business</b>. -Include: <b>Management, Marketing</b> and <b>Tourism</b> </p>
                             </div>
                             <div class="past-statistic-graph">
                                 <div class="stats-line"></div>
@@ -162,7 +162,7 @@
                         </div>
                         <div class="past-statistic-an">
                             <div class="past-statistic-ctn">
-                                <h3><span class="counter"><%= studentDegreeEngineering %></span></h3>
+                                <h3><span class="counter"><%= studentDegreeEngineering %></span> Student</h3>
                                 <p>Degree in <b>Engineering</b>.</p>
                             </div>
                             <div class="past-statistic-graph">
@@ -188,7 +188,7 @@
 							</div>
                             <div class="email-statis-wrap">
                                 <div class="email-round-nock">
-                                    <input type="text" class="knob" value="0" data-rel="55" data-linecap="round" data-width="130" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true">
+                                    <input type="text" class="knob" value="0" data-rel="<%= alumniDataJobIt %>" data-linecap="round" data-width="130" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true">
                                 </div>
                                 <div class="email-ctn-nock">
                                     <p>Information Technology</p>
@@ -197,7 +197,7 @@
                             <div class="email-round-gp">
                                 <div class="email-round-pro">
                                     <div class="email-signle-gp">
-                                        <input type="text" class="knob" value="0" data-rel="75" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
+                                        <input type="text" class="knob" value="0" data-rel="<%= alumniDataJobBusiness %>" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
                                     </div>
                                     <div class="email-ctn-nock">
                                         <p>Business</p>
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="email-round-pro">
                                     <div class="email-signle-gp">
-                                        <input type="text" class="knob" value="0" data-rel="35" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
+                                        <input type="text" class="knob" value="0" data-rel="<%= alumniDataJobMultimedia %>" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
                                     </div>
                                     <div class="email-ctn-nock">
                                         <p>Multimedia</p>
@@ -213,7 +213,7 @@
                                 </div>
                                 <div class="email-round-pro sm-res-ds-n lg-res-mg-bl">
                                     <div class="email-signle-gp">
-                                        <input type="text" class="knob" value="0" data-rel="45" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
+                                        <input type="text" class="knob" value="0" data-rel="<%= alumniDataJobEngineering %>" data-linecap="round" data-width="90" data-bgcolor="#E4E4E4" data-fgcolor="#00c292" data-thickness=".10" data-readonly="true" disabled>
                                     </div>
                                     <div class="email-ctn-nock">
                                         <p>Engineering</p>

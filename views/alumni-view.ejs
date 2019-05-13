@@ -158,7 +158,8 @@
                                         <th>Jurusan</th>
                                         <th>Detail Jurusan</th>
                                         <th>Tahun Kelulusan</th>
-                                        <th>Pekerjaan</th>
+                                        <th>Job Areas</th>
+                                        <th>Job Details</th>
                                         <th>Edit Data</th>
                                         <th>Remove Data</th>
                                     </tr>
@@ -180,6 +181,7 @@
                                         <td><%= alumni.detailJurusan %></td>
                                         <td><%= alumni.tahunKelulusan %></td>
                                         <td><%- alumni.pekerjaan %></td>
+                                        <td><%- alumni.pekerjaanDetails %></td>
                                         <td>
                                             <a href="/alumni/edit/<%= alumni.id %>"><button class="btn btn-primary notika-btn-primary">Edit Data</button></a>
                                         </td>

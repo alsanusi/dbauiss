@@ -145,6 +145,45 @@ function getAlumniDataPhD(aData){
     return aDataPhD.length
 }
 
+//Get Overall Data - Alumni Job in IT
+function getAlumniDataJobIt(aData){
+    var aDataJobIt
+    aDataJobIt = aData.filter(obj => {
+        return obj.pekerjaan === "Information Technology"
+    })
+    return aDataJobIt.length
+}
+
+//Get Overall Data - Alumni Job in Business
+function getAlumniDataJobBusiness(aData){
+    var aDataJobBusiness
+    aDataJobBusiness = aData.filter(obj => {
+        return obj.pekerjaan === "Business & Marketing"
+    })
+    return aDataJobBusiness.length
+}
+
+//Get Overall Data - Alumni Job in Multimedia
+function getAlumniDataJobMultimedia(aData){
+    var aDataJobMultimedia
+    aDataJobMultimedia = aData.filter(obj => {
+        return obj.pekerjaan === "Multimedia"
+    })
+    return aDataJobMultimedia.length
+}
+
+//Get Overall Data - Alumni Job in Engineering
+function getAlumniDataJobEngineering(aData){
+    var aDataJobEngineering
+    aDataJobEngineering = aData.filter(obj => {
+        return obj.pekerjaan === "Engineering"
+    })
+    return aDataJobEngineering.length
+}
+
+
+//Routing Process
+//Index
 app.get('/', function(req, res) {
 	res.render('index', {lg: req.body})
 })
@@ -180,6 +219,10 @@ app.get('/dashboard', function(req, res){
             getAlumniDataDegree(aData)
             getAlumniDataMaster(aData)
             getAlumniDataPhD(aData)
+            getAlumniDataJobIt(aData)
+            getAlumniDataJobBusiness(aData)
+            getAlumniDataJobMultimedia(aData)
+            getAlumniDataJobEngineering(aData)
             return conn.query('SELECT * FROM studentData')
         })
         .then( rows => {
@@ -214,6 +257,11 @@ app.get('/dashboard', function(req, res){
                 alumniDataDegree: getAlumniDataDegree(aData),
                 alumniDataMaster: getAlumniDataMaster(aData),
                 alumniDataPhD: getAlumniDataPhD(aData),
+                // Overal Alumni Job
+                alumniDataJobIt: getAlumniDataJobIt(aData),
+                alumniDataJobBusiness: getAlumniDataJobBusiness(aData),
+                alumniDataJobMultimedia: getAlumniDataJobMultimedia(aData),
+                alumniDataJobEngineering: getAlumniDataJobEngineering(aData),
             })
         })
         .catch( err => {

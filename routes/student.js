@@ -23,6 +23,7 @@ app.get('/', function(req, res){
 app.route('/input')
     .get(function(req, res){
         res.render('student-input', {
+            tpNumber: '',
             namaLengkap: '',
             email: '',
             daerahAsal: '',
@@ -38,6 +39,7 @@ app.route('/input')
     })
     .post(function(req, res){
         //Input Validation
+        req.assert('tpNumber', 'Required TP Number').notEmpty()
         req.assert('namaLengkap', 'Required Nama Lengkap').notEmpty()
         req.assert('email', 'Required Email').isEmail()
         req.assert('alamat', 'Required Alamat').notEmpty()
@@ -48,6 +50,7 @@ app.route('/input')
 
         if(!errors){
             var student = {
+                tpNumber: req.sanitize('tpNumber').escape().trim(),
                 namaLengkap: req.sanitize('namaLengkap').escape().trim(),
                 email: req.sanitize('email').escape().trim(),
                 daerahAsal: req.sanitize('daerahAsal').escape().trim(),
@@ -88,6 +91,7 @@ app.route('/input')
                         req.flash('error', err)
                         //Render
                         res.render('student-input', {
+                            tpNumber: student.tpNumber,
                             namaLengkap: student.namaLengkap,
                             email: student.email,
                             daerahAsal: student.daerahAsal,
@@ -104,6 +108,7 @@ app.route('/input')
                         req.flash('success', 'Student Data Input Successfully!')
                         //Render
                         res.render('student-input', {
+                            tpNumber: '',
                             namaLengkap: '',
                             email: '',
                             daerahAsal: '',
@@ -127,6 +132,7 @@ app.route('/input')
             req.flash('error', error_msg)
             //
             res.render('student-input', {
+                tpNumber: req.body.tpNumber,
                 namaLengkap: req.body.namaLengkap,
                 email: req.body.email,
                 daerahAsal: req.body.daerahAsal,
@@ -156,6 +162,7 @@ app.route('/edit/(:id)')
                 //If Alumni Data Found
                 res.render('student-edit', {
                     id: rows[0].id,
+                    tpNumber: rows[0].tpNumber,
                     namaLengkap: rows[0].namaLengkap,
                     email: rows[0].email,
                     daerahAsal: rows[0].daerahAsal,
@@ -174,6 +181,7 @@ app.route('/edit/(:id)')
     })
     .put(function(req, res, next){
         //Input Validation
+        req.assert('tpNumber', 'Required TP Number').notEmpty()
         req.assert('namaLengkap', 'Required Nama Lengkap').notEmpty()
         req.assert('email', 'Required Email').isEmail()
         req.assert('alamat', 'Required Alamat').notEmpty()
@@ -184,6 +192,7 @@ app.route('/edit/(:id)')
         
         if(!errors) {
             var student = {
+                tpNumber: req.sanitize('tpNumber').escape().trim(),
                 namaLengkap: req.sanitize('namaLengkap').escape().trim(),
                 email: req.sanitize('email').escape().trim(),
                 daerahAsal: req.sanitize('daerahAsal').escape().trim(),
@@ -204,6 +213,7 @@ app.route('/edit/(:id)')
                         //Render
                         res.render('student-edit', {
                             id: req.params.id,
+                            tpNumber: req.body.tpNumber,
                             namaLengkap: req.body.namaLengkap,
                             email: req.body.email,
                             daerahAsal: req.body.daerahAsal,
@@ -232,6 +242,7 @@ app.route('/edit/(:id)')
             //
             res.render('student-edit', {
                 id: req.params.id,
+                tpNumber: req.body.tpNumber,
                 namaLengkap: req.body.namaLengkap,
                 email: req.body.email,
                 daerahAsal: req.body.daerahAsal,

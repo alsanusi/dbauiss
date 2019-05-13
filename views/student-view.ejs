@@ -147,6 +147,7 @@
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>TP Number</th>
                                         <th>Nama Lengkap</th>
                                         <th>Email</th>
                                         <th>Daerah Asal</th>
@@ -167,6 +168,7 @@
                                 <% if (data) { %>
                                 <% data.forEach(function(student){ %>
                                     <tr>
+                                        <td><%= student.tpNumber %></td>
                                         <td><%= student.namaLengkap %></td>
                                         <td><%= student.email %></td>
                                         <td><%= student.daerahAsal %></td>

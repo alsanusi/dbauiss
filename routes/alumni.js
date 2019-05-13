@@ -37,7 +37,8 @@ app.route('/input')
             jurusan: '',
             detailJurusan: '',
             tahunKelulusan: '',
-            pekerjaan: ''
+            pekerjaan: '',
+            pekerjaanDetails: ''
         })
     })
     .post(function(req, res){
@@ -47,7 +48,7 @@ app.route('/input')
         req.assert('alamat', 'Required Alamat').notEmpty()
         req.assert('nomorTelepon', 'Required Nomor Telepon').notEmpty()
         req.assert('tanggalLahir', 'Required Tanggal Lahir').notEmpty()
-        req.assert('pekerjaan', 'Required Pekerjaan').notEmpty()
+        req.assert('pekerjaanDetails', 'Required Job Details').notEmpty()
 
         var errors = req.validationErrors()
 
@@ -64,16 +65,12 @@ app.route('/input')
                 jurusan: req.sanitize('jurusan'),
                 detailJurusan: req.sanitize('detailJurusan'),
                 tahunKelulusan: req.sanitize('tahunKelulusan').escape().trim(),
-                pekerjaan: req.sanitize('pekerjaan').escape().trim()
+                pekerjaan: req.sanitize('pekerjaan'),
+                pekerjaanDetails: req.sanitize('pekerjaanDetails').escape().trim()
             }
             req.getConnection(function(error, con){
                 //Validation for Jurusan and Detail Jurusan
                 switch (alumni.status){
-                    case "Undone":
-                    alumni.jurusan = "-"
-                    alumni.detailJurusan = "-"
-                    alumni.tahunKelulusan = "-"
-                    break;
                     case "Foundation":
                     alumni.jurusan = "-"
                     alumni.detailJurusan = "-"
@@ -105,7 +102,8 @@ app.route('/input')
                             jurusan: alumni.jurusan,
                             detailJurusan: alumni.detailJurusan,
                             tahunKelulusan: alumni.tahunKelulusan,
-                            pekerjaan: alumni.pekerjaan
+                            pekerjaan: alumni.pekerjaan,
+                            pekerjaanDetails: alumni.pekerjaanDetails
                         })
                     } else {
                         req.flash('success', 'Alumni Data Input Successfully!')
@@ -122,7 +120,8 @@ app.route('/input')
                             jurusan: '',
                             detailJurusan: '',
                             tahunKelulusan: '',
-                            pekerjaan: ''
+                            pekerjaan: '',
+                            pekerjaanDetails: ''
                         })
                     }
                 })
@@ -146,7 +145,8 @@ app.route('/input')
                 jurusan: req.body.jurusan,
                 detailJurusan: req.body.detailJurusan,
                 tahunKelulusan: req.body.tahunKelulusan,
-                pekerjaan: req.body.pekerjaan
+                pekerjaan: req.body.pekerjaan,
+                pekerjaanDetails: req.body.pekerjaanDetails
             })
         }
     })
@@ -176,7 +176,8 @@ app.route('/edit/(:id)')
                         jurusan: rows[0].jurusan,
                         detailJurusan: rows[0].detailJurusan,
                         tahunKelulusan: rows[0].tahunKelulusan,
-                        pekerjaan: rows[0].pekerjaan
+                        pekerjaan: rows[0].pekerjaan,
+                        pekerjaanDetails: rows[0].pekerjaanDetails
                     })
                 }
             })
@@ -190,7 +191,7 @@ app.route('/edit/(:id)')
         req.assert('nomorTelepon', 'Required Nomor Telepon').notEmpty()
         req.assert('tanggalLahir', 'Required Tanggal Lahir').notEmpty()
         req.assert('tahunKelulusan', 'Required Tahun Kelulusan').notEmpty()
-        req.assert('pekerjaan', 'Required Pekerjaan').notEmpty()
+        req.assert('pekerjaanDetails', 'Required Job Details').notEmpty()
 
         var errors = req.validationErrors()
 
@@ -207,7 +208,8 @@ app.route('/edit/(:id)')
                 jurusan: req.sanitize('jurusan'),
                 detailJurusan: req.sanitize('detailJurusan'),
                 tahunKelulusan: req.sanitize('tahunKelulusan').escape().trim(),
-                pekerjaan: req.sanitize('pekerjaan').escape().trim()
+                pekerjaan: req.sanitize('pekerjaan'),
+                pekerjaanDetails: req.sanitize('pekerjaanDetails').escape().trim()
             }
             req.getConnection(function(error, con){
                 con.query('UPDATE alumniData SET ? WHERE id = ' + req.params.id, alumni, function(err, result){
@@ -228,7 +230,8 @@ app.route('/edit/(:id)')
                             jurusan: req.body.jurusan,
                             detailJurusan: req.body.detailJurusan,
                             tahunKelulusan: req.body.tahunKelulusan,
-                            pekerjaan: req.body.pekerjaan
+                            pekerjaan: req.body.pekerjaan,
+                            pekerjaanDetails: req.body.pekerjaanDetails
                         })
                     } else {
                         req.flash('success', 'Alumni Data Updated Successfully!')
@@ -257,7 +260,8 @@ app.route('/edit/(:id)')
                 jurusan: req.body.jurusan,
                 detailJurusan: req.body.detailJurusan,
                 tahunKelulusan: req.body.tahunKelulusan,
-                pekerjaan: req.body.pekerjaan
+                pekerjaan: req.body.pekerjaan,
+                pekerjaanDetails: req.body.pekerjaanDetails
             })
         }
     })
