@@ -273,34 +273,5 @@ app.route('/student')
             })
         }
     })
-
-app.route('/testAja')
-    .get(function(req, res){
-        res.render('public-test', {
-            tpNumber: ''
-        })
-    })
-    .post(function(req, res){
-        req.getConnection(function(error, con){
-            con.query('SELECT tpNumber FROM studentData' , function(err, result){
-                if(err){
-                    console.log(err)
-                } else {
-                    var tpNumber = req.body.tpNumber;
-                    if(tpNumberValidation(result,tpNumber) > 0){
-                        var error_msg = ''
-                        error_msg = 'Sorry, This TP Number already Inside the Database!'
-                        req.flash('error', error_msg)
-                        console.log('Success')
-                        res.render('public-student', {
-                            tpNumber: req.body.tpNumber,
-                        })
-                    } else {
-                        console.log('error')
-                    }
-                }
-            })
-        })
-    })
-
+    
 module.exports = app

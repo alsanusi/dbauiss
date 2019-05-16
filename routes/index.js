@@ -10,6 +10,7 @@ const adminCredentials = {
     pass: 'auiss2019' 
 }
 
+//Session Checking
 const redirectLogin = (req, res, next) => {
     if(!req.session.userId){
         res.redirect('/')
@@ -18,7 +19,7 @@ const redirectLogin = (req, res, next) => {
     }
 }
 
-const redirectDashboard = (req, res, next) => {
+const redirectHome = (req, res, next) => {
     if(req.session.userId){
         res.redirect('/dashboard')
     } else {
@@ -188,7 +189,7 @@ app.get('/', function(req, res) {
 })
 
 //Login Authentication  
-app.post('/login', redirectDashboard , function(req, res){
+app.post('/login', redirectHome , function(req, res){
     var username = req.body.username
     var password = req.body.pass
     if (username == adminCredentials.username && password == adminCredentials.pass) {
@@ -203,11 +204,11 @@ app.post('/login', redirectDashboard , function(req, res){
     }
 })
 
-app.get('/auissdb-form', function(req, res){
+app.get('/auissdb-form', redirectLogin, function(req, res){
     res.render('public-index')
 })
 
-app.get('/student-form', function(req, res){
+app.get('/student-form', redirectLogin, function(req, res){
     res.render('public-student')
 })
 

@@ -1,8 +1,26 @@
 const express = require('express')
 const app = express()
 
+//Session Checking
+const redirectLogin = (req, res, next) => {
+    if(!req.session.userId){
+        res.redirect('/')
+    } else {
+        next()
+    }
+}
+
+//Student TP Number Validation
+function tpNumberValidation(sData, tpNumber){
+    var studentTpNumber
+    studentTpNumber = sData.filter(obj => {
+        return obj.tpNumber === tpNumber
+    })
+    return studentTpNumber.length
+}
+
 //View All Student Data
-app.get('/', function(req, res){
+app.get('/', redirectLogin,  function(req, res){
     req.getConnection(function(error, con){
         con.query('SELECT * FROM studentData ORDER BY id DESC', function(err, rows, fields){
             if(err){
@@ -21,7 +39,7 @@ app.get('/', function(req, res){
 
 //Student Data Input
 app.route('/input')
-    .get(function(req, res){
+    .get(redirectLogin, function(req, res){
         res.render('student-input', {
             tpNumber: '',
             namaLengkap: '',
@@ -47,6 +65,7 @@ app.route('/input')
         req.assert('tanggalLahir', 'Required Tanggal Lahir').notEmpty()
 
         var errors = req.validationErrors()
+        var tpNumber = req.body.tpNumber
 
         if(!errors){
             var student = {
@@ -85,42 +104,59 @@ app.route('/input')
                     student.detailJurusan = "-"
                     break;
                 }
-                con.query('INSERT INTO studentData SET ?', student, function(err, result){
-                    //Throw Err
+                con.query('SELECT tpNumber from studentdata', function(err, result){
                     if(err){
                         req.flash('error', err)
-                        //Render
-                        res.render('student-input', {
-                            tpNumber: student.tpNumber,
-                            namaLengkap: student.namaLengkap,
-                            email: student.email,
-                            daerahAsal: student.daerahAsal,
-                            alamat: student.alamat,
-                            nomorTelepon: student.nomorTelepon,
-                            jenisKelamin: student.jenisKelamin,
-                            tanggalLahir: student.tanggalLahir,
-                            status: student.status,
-                            jurusan: student.jurusan,
-                            detailJurusan: student.detailJurusan,
-                            semester: student.semester
+                        res.render('student-input',{
+
                         })
                     } else {
-                        req.flash('success', 'Student Data Input Successfully!')
-                        //Render
-                        res.render('student-input', {
-                            tpNumber: '',
-                            namaLengkap: '',
-                            email: '',
-                            daerahAsal: '',
-                            alamat: '',
-                            nomorTelepon: '',
-                            jenisKelamin: '',
-                            tanggalLahir: '',
-                            status: '',
-                            jurusan: '',
-                            detailJurusan: '',
-                            semester: ''
-                        })
+                        if(tpNumberValidation(result, tpNumber) > 0){
+                            //Error
+                            var error_msg = 'Sorry, This TP Number already Inside the Database!'
+                            req.flash('error', error_msg)
+                            //
+                            res.redirect('/student/input')
+                        } else {
+                            con.query('INSERT INTO studentData SET ?', student, function(err, result){
+                                //Throw Err
+                                if(err){
+                                    req.flash('error', err)
+                                    //Render
+                                    res.render('student-input', {
+                                        tpNumber: student.tpNumber,
+                                        namaLengkap: student.namaLengkap,
+                                        email: student.email,
+                                        daerahAsal: student.daerahAsal,
+                                        alamat: student.alamat,
+                                        nomorTelepon: student.nomorTelepon,
+                                        jenisKelamin: student.jenisKelamin,
+                                        tanggalLahir: student.tanggalLahir,
+                                        status: student.status,
+                                        jurusan: student.jurusan,
+                                        detailJurusan: student.detailJurusan,
+                                        semester: student.semester
+                                    })
+                                } else {
+                                    req.flash('success', 'Student Data Input Successfully!')
+                                    //Render
+                                    res.render('student-input', {
+                                        tpNumber: '',
+                                        namaLengkap: '',
+                                        email: '',
+                                        daerahAsal: '',
+                                        alamat: '',
+                                        nomorTelepon: '',
+                                        jenisKelamin: '',
+                                        tanggalLahir: '',
+                                        status: '',
+                                        jurusan: '',
+                                        detailJurusan: '',
+                                        semester: ''
+                                    })
+                                }
+                            })
+                        }
                     }
                 })
             })
@@ -149,35 +185,35 @@ app.route('/input')
     })
 
 //Student Data Edit
-app.route('/edit/(:id)')
+app.route('/edit/(:id)', redirectLogin)
     .get(function(req, res, next){
-    req.getConnection(function(error, con){
-        con.query('SELECT * FROM studentData WHERE id = ?', [req.params.id], function(err, rows, fields){
-            if(err) throw err
-            //If Student Data not Found
-            if(rows.length <= 0){
-                req.flash('error', 'Student Data not Found with ID' + req.params.id)
-                res.redirect('/student')
-            }else{
-                //If Alumni Data Found
-                res.render('student-edit', {
-                    id: rows[0].id,
-                    tpNumber: rows[0].tpNumber,
-                    namaLengkap: rows[0].namaLengkap,
-                    email: rows[0].email,
-                    daerahAsal: rows[0].daerahAsal,
-                    alamat: rows[0].alamat,
-                    nomorTelepon: rows[0].nomorTelepon,
-                    jenisKelamin: rows[0].jenisKelamin,
-                    tanggalLahir: rows[0].tanggalLahir,
-                    status: rows[0].status,
-                    jurusan: rows[0].jurusan,
-                    detailJurusan: rows[0].detailJurusan,
-                    semester: rows[0].semester
-                })
-            }
+        req.getConnection(function(error, con){
+            con.query('SELECT * FROM studentData WHERE id = ?', [req.params.id], function(err, rows, fields){
+                if(err) throw err
+                //If Student Data not Found
+                if(rows.length <= 0){
+                    req.flash('error', 'Student Data not Found with ID' + req.params.id)
+                    res.redirect('/student')
+                }else{
+                    //If Alumni Data Found
+                    res.render('student-edit', {
+                        id: rows[0].id,
+                        tpNumber: rows[0].tpNumber,
+                        namaLengkap: rows[0].namaLengkap,
+                        email: rows[0].email,
+                        daerahAsal: rows[0].daerahAsal,
+                        alamat: rows[0].alamat,
+                        nomorTelepon: rows[0].nomorTelepon,
+                        jenisKelamin: rows[0].jenisKelamin,
+                        tanggalLahir: rows[0].tanggalLahir,
+                        status: rows[0].status,
+                        jurusan: rows[0].jurusan,
+                        detailJurusan: rows[0].detailJurusan,
+                        semester: rows[0].semester
+                    })
+                }
+            })
         })
-    })
     })
     .put(function(req, res, next){
         //Input Validation
@@ -206,30 +242,72 @@ app.route('/edit/(:id)')
                 semester: req.sanitize('semester').escape().trim()
             }
             req.getConnection(function(error, con){
-                con.query('UPDATE studentData SET ? WHERE id = ' + req.params.id, student, function(err, result){
-                    //If Error
-                    if (err) {
+                con.query('SELECT tpNumber from studentData', function(err, result){
+                    if(err){
                         req.flash('error', err)
-                        //Render
                         res.render('student-edit', {
-                            id: req.params.id,
-                            tpNumber: req.body.tpNumber,
-                            namaLengkap: req.body.namaLengkap,
-                            email: req.body.email,
-                            daerahAsal: req.body.daerahAsal,
-                            alamat: req.body.alamat,
-                            nomorTelepon: req.body.nomorTelepon,
-                            jenisKelamin: req.body.jenisKelamin,
-                            tanggalLahir: req.body.tanggalLahir,
-                            status: req.body.status,
-                            jurusan: req.body.jurusan,
-                            detailJurusan: req.body.detailJurusan,
-                            semester: req.body.semester
+                            tpNumber: student.tpNumber,
+                            namaLengkap: student.namaLengkap,
+                            email: student.email,
+                            daerahAsal: student.daerahAsal,
+                            alamat: student.alamat,
+                            nomorTelepon: student.nomorTelepon,
+                            jenisKelamin: student.jenisKelamin,
+                            tanggalLahir: student.tanggalLahir,
+                            status: student.status,
+                            jurusan: student.jurusan,
+                            detailJurusan: student.detailJurusan,
+                            semester: student.semester
                         })
                     } else {
-                        req.flash('success', 'Student Data Updated Successfully!')
-                        //Redirect
-                        res.redirect('/student')
+                        if(tpNumberValidation(result, tpNumber) > 0){
+                            //Error
+                            var error_msg = 'Sorry, This TP Number already Inside the Database!'
+                            req.flash('error', error_msg)
+                            //Input Back
+                            res.render('student-edit', {
+                                id: req.params.id,
+                                tpNumber: req.body.tpNumber,
+                                namaLengkap: req.body.namaLengkap,
+                                email: req.body.email,
+                                daerahAsal: req.body.daerahAsal,
+                                alamat: req.body.alamat,
+                                nomorTelepon: req.body.nomorTelepon,
+                                jenisKelamin: req.body.jenisKelamin,
+                                tanggalLahir: req.body.tanggalLahir,
+                                status: req.body.status,
+                                jurusan: req.body.jurusan,
+                                detailJurusan: req.body.detailJurusan,
+                                semester: req.body.semester
+                            })
+                        } else {
+                            con.query('UPDATE studentData SET ? WHERE id = ' + req.params.id, student, function(err, result){
+                                //If Error
+                                if (err) {
+                                    req.flash('error', err)
+                                    //Render
+                                    res.render('student-edit', {
+                                        id: req.params.id,
+                                        tpNumber: req.body.tpNumber,
+                                        namaLengkap: req.body.namaLengkap,
+                                        email: req.body.email,
+                                        daerahAsal: req.body.daerahAsal,
+                                        alamat: req.body.alamat,
+                                        nomorTelepon: req.body.nomorTelepon,
+                                        jenisKelamin: req.body.jenisKelamin,
+                                        tanggalLahir: req.body.tanggalLahir,
+                                        status: req.body.status,
+                                        jurusan: req.body.jurusan,
+                                        detailJurusan: req.body.detailJurusan,
+                                        semester: req.body.semester
+                                    })
+                                } else {
+                                    req.flash('success', 'Student Data Updated Successfully!')
+                                    //Redirect
+                                    res.redirect('/student')
+                                }
+                            })
+                        }
                     }
                 })
             })
@@ -259,7 +337,7 @@ app.route('/edit/(:id)')
     })
 
 // Student Data Remove
-app.delete('/delete/(:id)', function(req, res, next) {
+app.delete('/delete/(:id)', redirectLogin, function(req, res, next) {
 	var student = { id: req.params.id }
 	
 	req.getConnection(function(error, conn) {

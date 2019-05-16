@@ -1,8 +1,17 @@
 const express = require('express')
 const app = express()
 
+//Session Checking
+const redirectLogin = (req, res, next) => {
+    if(!req.session.userId){
+        res.redirect('/')
+    } else {
+        next()
+    }
+}
+
 //View All Alumni Data
-app.get('/', function(req, res){
+app.get('/', redirectLogin, function(req, res){
     req.getConnection(function(error, con){
         con.query('SELECT * FROM alumniData ORDER BY id DESC', function(err, rows, fields){
             if(err){
@@ -23,7 +32,7 @@ app.get('/', function(req, res){
 
 //Alumni Data Input
 app.route('/input')
-    .get(function(req, res){
+    .get(redirectLogin, function(req, res){
         res.render('alumni-input', {
             namaLengkap: '',
             email: '',
@@ -40,7 +49,7 @@ app.route('/input')
             pekerjaanDetails: ''
         })
     })
-    .post(function(req, res){
+    .post(redirectLogin, function(req, res){
         //Input Validation
         req.assert('namaLengkap', 'Required Nama Lengkap').notEmpty()
         req.assert('email', 'Required Email').isEmail()
@@ -152,7 +161,7 @@ app.route('/input')
 
 //Alumni Data Edit
 app.route('/edit/(:id)')
-    .get(function(req, res, next){
+    .get(redirectLogin, function(req, res, next){
         req.getConnection(function(error, con){
             con.query('SELECT * FROM alumniData WHERE id = ?', [req.params.id], function(err, rows, fields){
                 if(err) throw err
@@ -182,7 +191,7 @@ app.route('/edit/(:id)')
             })
         })
     })
-    .put(function(req, res, next){
+    .put(redirectLogin, function(req, res, next){
         //Input Validation
         req.assert('namaLengkap', 'Required Nama Lengkap').notEmpty()
         req.assert('email', 'Required Email').isEmail()
@@ -267,7 +276,7 @@ app.route('/edit/(:id)')
 
 
 // Alumni Data Remove
-app.delete('/delete/(:id)', function(req, res, next) {
+app.delete('/delete/(:id)', redirectLogin, function(req, res, next) {
 	var alumni = { id: req.params.id }
 	
 	req.getConnection(function(error, conn) {
