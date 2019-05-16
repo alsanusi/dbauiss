@@ -119,9 +119,11 @@ app.use(flash())
 const index = require('./routes/index')
 const alumni = require('./routes/alumni')
 const student = require('./routes/student')
+const form = require('./routes/form')
 app.use('/', index)
 app.use('/alumni', alumni)
 app.use('/student', student)
+app.use('/form', form)
 
 /**
  * Login Authentication

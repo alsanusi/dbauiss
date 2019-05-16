@@ -1,30 +1,14 @@
 const express = require('express')
 const app = express()
 
-//View All Alumni Data
 app.get('/', function(req, res){
-    req.getConnection(function(error, con){
-        con.query('SELECT * FROM alumniData ORDER BY id DESC', function(err, rows, fields){
-            if(err){
-                req.flash('error', err)
-                res.render('alumni-view', {
-                    title: 'Alumni List',
-                    data: ''
-                })
-            } else {
-                res.render('alumni-view', {
-                    title: 'Alumni List',
-                    data: rows
-                })
-            }
-        })
-    })
+    res.render('public-index')
 })
 
 //Alumni Data Input
-app.route('/input')
+app.route('/alumni')
     .get(function(req, res){
-        res.render('alumni-input', {
+        res.render('public-alumni', {
             namaLengkap: '',
             email: '',
             daerahAsal: '',
@@ -89,7 +73,7 @@ app.route('/input')
                     if(err){
                         req.flash('error', err)
                         //Render
-                        res.render('alumni-input', {
+                        res.render('public-alumni', {
                             namaLengkap: alumni.namaLengkap,
                             email: alumni.email,
                             daerahAsal: alumni.daerahAsal,
@@ -107,21 +91,7 @@ app.route('/input')
                     } else {
                         req.flash('success', 'Alumni Data Input Successfully!')
                         //Render
-                        res.render('alumni-input', {
-                            namaLengkap: '',
-                            email: '',
-                            daerahAsal: '',
-                            alamat: '',
-                            nomorTelepon: '',
-                            jenisKelamin: '',
-                            tanggalLahir: '',
-                            status: '',
-                            jurusan: '',
-                            detailJurusan: '',
-                            tahunKelulusan: '',
-                            pekerjaan: '',
-                            pekerjaanDetails: ''
-                        })
+                        res.render('public-thanks')
                     }
                 })
             })
@@ -132,7 +102,7 @@ app.route('/input')
             })
             req.flash('error', error_msg)
             //
-            res.render('alumni-input', {
+            res.render('public-alumni', {
                 namaLengkap: req.body.namaLengkap,
                 email: req.body.email,
                 daerahAsal: req.body.daerahAsal,
@@ -150,52 +120,48 @@ app.route('/input')
         }
     })
 
-//Alumni Data Edit
-app.route('/edit/(:id)')
-    .get(function(req, res, next){
-        req.getConnection(function(error, con){
-            con.query('SELECT * FROM alumniData WHERE id = ?', [req.params.id], function(err, rows, fields){
-                if(err) throw err
-                //If Alumni Data not Found
-                if(rows.length <= 0){
-                    req.flash('error', 'Alumni Data not Found with ID' + req.params.id)
-                    res.redirect('/alumni')
-                }else{
-                    //If Alumni Data Found
-                    res.render('alumni-edit', {
-                        id: rows[0].id,
-                        namaLengkap: rows[0].namaLengkap,
-                        email: rows[0].email,
-                        daerahAsal: rows[0].daerahAsal,
-                        alamat: rows[0].alamat,
-                        nomorTelepon: rows[0].nomorTelepon,
-                        jenisKelamin: rows[0].jenisKelamin,
-                        tanggalLahir: rows[0].tanggalLahir,
-                        status: rows[0].status,
-                        jurusan: rows[0].jurusan,
-                        detailJurusan: rows[0].detailJurusan,
-                        tahunKelulusan: rows[0].tahunKelulusan,
-                        pekerjaan: rows[0].pekerjaan,
-                        pekerjaanDetails: rows[0].pekerjaanDetails
-                    })
-                }
-            })
+//Student TP Number Validation
+function tpNumberValidation(sData, tpNumber){
+    var studentTpNumber
+    studentTpNumber = sData.filter(obj => {
+        return obj.tpNumber === tpNumber
+    })
+    return studentTpNumber.length
+}
+
+//Student Data Input
+app.route('/student')
+    .get(function(req, res){
+        res.render('public-student', {
+            tpNumber: '',
+            namaLengkap: '',
+            email: '',
+            daerahAsal: '',
+            alamat: '',
+            nomorTelepon: '',
+            jenisKelamin: '',
+            tanggalLahir: '',
+            status: '',
+            jurusan: '',
+            detailJurusan: '',
+            semester: ''
         })
     })
-    .put(function(req, res, next){
+    .post(function(req, res){
         //Input Validation
+        req.assert('tpNumber', 'Required TP Number').notEmpty()
         req.assert('namaLengkap', 'Required Nama Lengkap').notEmpty()
         req.assert('email', 'Required Email').isEmail()
         req.assert('alamat', 'Required Alamat').notEmpty()
         req.assert('nomorTelepon', 'Required Nomor Telepon').notEmpty()
         req.assert('tanggalLahir', 'Required Tanggal Lahir').notEmpty()
-        req.assert('tahunKelulusan', 'Required Tahun Kelulusan').notEmpty()
-        req.assert('pekerjaanDetails', 'Required Job Details').notEmpty()
 
         var errors = req.validationErrors()
+        var tpNumber = req.body.tpNumber
 
-        if(!errors) {
-            var alumni = {
+        if(!errors){
+            var student = {
+                tpNumber: req.sanitize('tpNumber').escape().trim(),
                 namaLengkap: req.sanitize('namaLengkap').escape().trim(),
                 email: req.sanitize('email').escape().trim(),
                 daerahAsal: req.sanitize('daerahAsal').escape().trim(),
@@ -206,36 +172,81 @@ app.route('/edit/(:id)')
                 status: req.sanitize('status').escape().trim(),            
                 jurusan: req.sanitize('jurusan'),
                 detailJurusan: req.sanitize('detailJurusan'),
-                tahunKelulusan: req.sanitize('tahunKelulusan').escape().trim(),
-                pekerjaan: req.sanitize('pekerjaan'),
-                pekerjaanDetails: req.sanitize('pekerjaanDetails').escape().trim()
+                semester: req.sanitize('semester').escape().trim()
             }
             req.getConnection(function(error, con){
-                con.query('UPDATE alumniData SET ? WHERE id = ' + req.params.id, alumni, function(err, result){
-                    //If Error
-                    if (err) {
+                //Validation for Student Status
+                switch (student.status){
+                    case "Undone":
+                    student.jurusan = "-"
+                    student.detailJurusan = "-"
+                    student.tahunKelulusan = "-"
+                    break;
+                    case "Foundation":
+                    student.jurusan = "-"
+                    student.detailJurusan = "-"
+                    break;
+                    case "Diploma":
+                    student.detailJurusan = "-"
+                    break;
+                    case "Master":
+                    student.detailJurusan = "-"
+                    break;
+                    case "PhD":
+                    student.detailJurusan = "-"
+                    break;
+                }
+                con.query('SELECT tpNumber from studentData', function(err, result){
+                    if(err){
                         req.flash('error', err)
-                        //Render
-                        res.render('alumni-edit', {
-                            id: req.params.id,
-                            namaLengkap: req.body.namaLengkap,
-                            email: req.body.email,
-                            daerahAsal: req.body.daerahAsal,
-                            alamat: req.body.alamat,
-                            nomorTelepon: req.body.nomorTelepon,
-                            jenisKelamin: req.body.jenisKelamin,
-                            tanggalLahir: req.body.tanggalLahir,
-                            status: req.body.status,
-                            jurusan: req.body.jurusan,
-                            detailJurusan: req.body.detailJurusan,
-                            tahunKelulusan: req.body.tahunKelulusan,
-                            pekerjaan: req.body.pekerjaan,
-                            pekerjaanDetails: req.body.pekerjaanDetails
+                        //
+                        res.render('public-student', {
+                            tpNumber: student.tpNumber,
+                            namaLengkap: student.namaLengkap,
+                            email: student.email,
+                            daerahAsal: student.daerahAsal,
+                            alamat: student.alamat,
+                            nomorTelepon: student.nomorTelepon,
+                            jenisKelamin: student.jenisKelamin,
+                            tanggalLahir: student.tanggalLahir,
+                            status: student.status,
+                            jurusan: student.jurusan,
+                            detailJurusan: student.detailJurusan,
+                            semester: student.semester
                         })
                     } else {
-                        req.flash('success', 'Alumni Data Updated Successfully!')
-                        //Redirect
-                        res.redirect('/alumni')
+                        if(tpNumberValidation(result, tpNumber) > 0){
+                            //Error
+                            var error_msg = 'Sorry, This TP Number already Inside the Database!'
+                            req.flash('error', error_msg)
+                            //Input Back
+                            res.redirect('/form/student-form')
+                        } else {
+                            con.query('INSERT INTO studentData SET ?', student, function(err, result){
+                                if(err){
+                                    req.flash('error', err)
+                                    //Render
+                                    res.render('public-student', {
+                                        tpNumber: student.tpNumber,
+                                        namaLengkap: student.namaLengkap,
+                                        email: student.email,
+                                        daerahAsal: student.daerahAsal,
+                                        alamat: student.alamat,
+                                        nomorTelepon: student.nomorTelepon,
+                                        jenisKelamin: student.jenisKelamin,
+                                        tanggalLahir: student.tanggalLahir,
+                                        status: student.status,
+                                        jurusan: student.jurusan,
+                                        detailJurusan: student.detailJurusan,
+                                        semester: student.semester
+                                    })
+                                } else {
+                                    req.flash('success', 'Student Data Input Successfully!')
+                                    //Render
+                                    res.render('public-thanks')
+                                }
+                            })
+                        }
                     }
                 })
             })
@@ -246,8 +257,8 @@ app.route('/edit/(:id)')
             })
             req.flash('error', error_msg)
             //
-            res.render('alumni-edit', {
-                id: req.params.id,
+            res.render('public-student', {
+                tpNumber: req.body.tpNumber,
                 namaLengkap: req.body.namaLengkap,
                 email: req.body.email,
                 daerahAsal: req.body.daerahAsal,
@@ -258,33 +269,38 @@ app.route('/edit/(:id)')
                 status: req.body.status,
                 jurusan: req.body.jurusan,
                 detailJurusan: req.body.detailJurusan,
-                tahunKelulusan: req.body.tahunKelulusan,
-                pekerjaan: req.body.pekerjaan,
-                pekerjaanDetails: req.body.pekerjaanDetails
+                semester: req.body.semester
             })
         }
     })
 
-
-// Alumni Data Remove
-app.delete('/delete/(:id)', function(req, res, next) {
-	var alumni = { id: req.params.id }
-	
-	req.getConnection(function(error, conn) {
-		conn.query('DELETE FROM alumniData WHERE id = ' + req.params.id, alumni, function(err, result) {
-			//if(err) throw err
-			if (err) {
-				req.flash('error', err)
-				// redirect to users list page
-				res.redirect('/alumni')
-			} else {
-				req.flash('success', 'User deleted successfully! id = ' + req.params.id)
-				// redirect to users list page
-				res.redirect('/alumni')
-			}
-		})
-	})
-})
-
+app.route('/testAja')
+    .get(function(req, res){
+        res.render('public-test', {
+            tpNumber: ''
+        })
+    })
+    .post(function(req, res){
+        req.getConnection(function(error, con){
+            con.query('SELECT tpNumber FROM studentData' , function(err, result){
+                if(err){
+                    console.log(err)
+                } else {
+                    var tpNumber = req.body.tpNumber;
+                    if(tpNumberValidation(result,tpNumber) > 0){
+                        var error_msg = ''
+                        error_msg = 'Sorry, This TP Number already Inside the Database!'
+                        req.flash('error', error_msg)
+                        console.log('Success')
+                        res.render('public-student', {
+                            tpNumber: req.body.tpNumber,
+                        })
+                    } else {
+                        console.log('error')
+                    }
+                }
+            })
+        })
+    })
 
 module.exports = app

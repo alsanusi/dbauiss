@@ -181,7 +181,6 @@ function getAlumniDataJobEngineering(aData){
     return aDataJobEngineering.length
 }
 
-
 //Routing Process
 //Index
 app.get('/', function(req, res) {
@@ -189,7 +188,7 @@ app.get('/', function(req, res) {
 })
 
 //Login Authentication  
-app.post('/login', redirectDashboard, function(req, res){
+app.post('/login', redirectDashboard , function(req, res){
     var username = req.body.username
     var password = req.body.pass
     if (username == adminCredentials.username && password == adminCredentials.pass) {
@@ -204,7 +203,15 @@ app.post('/login', redirectDashboard, function(req, res){
     }
 })
 
-app.get('/dashboard', function(req, res){
+app.get('/auissdb-form', function(req, res){
+    res.render('public-index')
+})
+
+app.get('/student-form', function(req, res){
+    res.render('public-student')
+})
+
+app.get('/dashboard', redirectLogin, function(req, res){
     //Variable
     var aData, sData
     //Promise

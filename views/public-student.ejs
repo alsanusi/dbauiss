@@ -1,0 +1,676 @@
+<!-- Include Header -->
+<%- include public-layout/header.ejs %>
+
+<div class="container-contact100">
+    <div class="wrap-contact100">
+        <form class="contact100-form validate-form" action="/form/student" method="POST">
+            <span class="contact100-form-title">
+                <div>
+                    <img src="/login-assets/images/auiss-icon.png" style="height: 135px; margin-bottom: 30px" />
+                </div>
+                <font face="Acme">AUISS Database Form - Student</font>
+                </br>
+                </br>
+                <% if(messages.error){ %>
+                <h2 style="color:#d82436">Failed to Input!</h2>
+                </br>
+                <p>Insert the <b style="color:#d82436">data-alumni</b> correctly.</p>
+                <p><%- messages.error %></p>
+                <%} else if(messages.success){ %>
+                <h2 style="color:#d82436">Data Input Successfully!</h2>
+                </br>
+                <p>Thanks for the <b style="color:#d82436">Submission</b>.</p>
+                <% } %>
+            </span>
+
+            <!-- Student - TP Number -->
+            <div class="wrap-input100 validate-input bg1" data-validate="Masukkan TP Number Anda!">
+                <span class="label-input100">TP Number *</span>
+                <input class="input100" type="text" name="tpNumber" placeholder="TP Number">
+            </div>
+
+            <!-- Student - Full Name -->
+            <div class="wrap-input100 validate-input bg1" data-validate="Masukkan Nama Lengkap Anda!">
+                <span class="label-input100">Full Name *</span>
+                <input class="input100" type="text" name="namaLengkap" placeholder="Nama Lengkap">
+            </div>
+
+            <!-- Student - Email -->
+            <div class="wrap-input100 validate-input bg1" data-validate="Masukkan Email Anda!">
+                <span class="label-input100">Email *</span>
+                <input class="input100" type="text" name="email" placeholder="Alamat Email ">
+            </div>
+
+            <!-- Student - Daerah Asal -->
+            <div class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Daerah Asal *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="daerahAsal">
+                        <option disabled selected>Pilih Daerah</option>
+                        <option value="Aceh">Aceh</option>
+                        <option value="Sumatera Utara">Sumatera Utara</option>
+                        <option value="Sumatera Barat">Sumatera Barat</option>
+                        <option value="Riau">Riau</option>
+                        <option value="Jambi">Jambi</option>
+                        <option value="Sumatera Selatan">Sumatera Selatan</option>
+                        <option value="Bengkulu">Bengkulu</option>
+                        <option value="Lampung">Lampung</option>
+                        <option value="Bangka Belitung">Kep. Bangka Belitung</option>
+                        <option value="Kepulauan Riau">Kepulauan Riau</option>
+                        <option value="Jakarta">Jakarta</option>
+                        <option value="Jawa Barat">Jawa Barat</option>
+                        <option value="Banten">Banten</option>
+                        <option value="Jawa Tengah">Jawa Tengah</option>
+                        <option value="Yogyakarta">Yogyakarta</option>
+                        <option value="Jawa Timur">Jawa Timur</option>
+                        <option value="Kalimantan Barat">Kalimantan Barat</option>
+                        <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                        <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                        <option value="Kalimantan Timur">Kalimantan Timur</option>
+                        <option value="Kalimantan Utara">Kalimantan Utara</option>
+                        <option value="Bali">Bali</option>
+                        <option value="NTT">Nusa Tenggara Timur</option>
+                        <option value="NTB">Nusa Tenggara Barat</option>
+                        <option value="Sulawesi Utara">Sulawesi Utara</option>
+                        <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                        <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                        <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                        <option value="Sulawesi Barat">Sulawesi Barat</option>
+                        <option value="Gorontalo">Gorontalo</option>
+                        <option value="Maluku">Maluku</option>
+                        <option value="Maluku Utara">Maluku Utara</option>
+                        <option value="Papua">Papua</option>
+                        <option value="Papua Barat">Papua Barat</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Student - Alamat -->
+            <div class="wrap-input100 validate-input bg1" data-validate="Masukkan Alamat Anda!">
+                <span class="label-input100">Alamat *</span>
+                <input class="input100" type="text" name="alamat" placeholder="Alamat">
+            </div>
+
+            <!-- Student - Nomor Telepon -->
+            <div class="wrap-input100 validate-input bg1" data-validate="Masukkan Nomor Telepon Anda!">
+                <span class="label-input100">Nomor Telepon *</span>
+                <input class="input100" type="text" name="nomorTelepon" placeholder="Nomor Telepon">
+            </div>
+
+            <!-- Student - Jenis Kelamin -->
+            <div class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Jenis Kelamin *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="jenisKelamin">
+                        <option value="Pria">Pria</option>
+                        <option value="Wanita">Wanita</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Student - Tanggal Lahir -->
+            <div class="wrap-input100 validate-input bg1" data-validate="Masukkan Tanggal Lahir Anda!">
+                <span class="label-input100">Tanggal Lahir *</span>
+                <input class="input100" type="date" name="tanggalLahir" placeholder="Tanggal Lahir">
+            </div>
+
+            <!-- Student - Status -->
+            <div class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Status *</span>
+                <div>
+                    <select onchange="alumniStatus(this)" class="js-select2" name="status">
+                        <option disabled selected>Please Choose</option>
+                        <option value="Foundation">Foundation</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Degree">Degree</option>
+                        <option value="Master">Master</option>
+                        <option value="PhD">PhD</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Student - Jurusan Validation -->
+            <script>
+                function alumniStatus(status) {
+                    switch (status.value) {
+                        case "Diploma":
+                            document.getElementById("diploma").style.display = "block";
+                            document.getElementById("degree").style.display = "none";
+                            document.getElementById("master").style.display = "none";
+                            document.getElementById("phd").style.display = "none";
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("foundationSemester").style.display = "none";
+                            document.getElementById("diplomaSemester").style.display = "block";
+                            document.getElementById("degreeSemester").style.display = "none";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            document.getElementById("masterSemester").style.display = "none";
+                            document.getElementById("phdSemester").style.display = "none";
+                            break;
+                        case "Degree":
+                            document.getElementById("diploma").style.display = "none";
+                            document.getElementById("degree").style.display = "block";
+                            document.getElementById("master").style.display = "none";
+                            document.getElementById("phd").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("foundationSemester").style.display = "none";
+                            document.getElementById("diplomaSemester").style.display = "none";
+                            document.getElementById("diplomaSemester").style.display = "none";
+                            document.getElementById("masterSemester").style.display = "none";
+                            document.getElementById("phdSemester").style.display = "none";
+                            break;
+                        case "Master":
+                            document.getElementById("diploma").style.display = "none";
+                            document.getElementById("degree").style.display = "none";
+                            document.getElementById("master").style.display = "block";
+                            document.getElementById("phd").style.display = "none";
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("foundationSemester").style.display = "none";
+                            document.getElementById("diplomaSemester").style.display = "none";
+                            document.getElementById("degreeSemester").style.display = "none";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            document.getElementById("masterSemester").style.display = "block";
+                            document.getElementById("phdSemester").style.display = "none";
+                            break;
+                        case "PhD":
+                            document.getElementById("diploma").style.display = "none";
+                            document.getElementById("degree").style.display = "none";
+                            document.getElementById("master").style.display = "none";
+                            document.getElementById("phd").style.display = "block";
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("foundationSemester").style.display = "none";
+                            document.getElementById("diplomaSemester").style.display = "none";
+                            document.getElementById("degreeSemester").style.display = "none";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            document.getElementById("masterSemester").style.display = "none";
+                            document.getElementById("phdSemester").style.display = "block";
+                            break;
+                        default:
+                            document.getElementById("diploma").style.display = "none";
+                            document.getElementById("degree").style.display = "none";
+                            document.getElementById("master").style.display = "none";
+                            document.getElementById("phd").style.display = "none";
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("foundationSemester").style.display = "block";
+                            document.getElementById("diplomaSemester").style.display = "none";
+                            document.getElementById("degreeSemester").style.display = "none";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            document.getElementById("masterSemester").style.display = "none";
+                            document.getElementById("phdSemester").style.display = "none";
+                            break;
+                    }
+                }
+            </script>
+
+            <!-- Diploma - Jurusan  -->
+            <div id="diploma" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="jurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Information & Communication Technology">Information &
+                            Communication Technology</option>
+                        <option value="Information & Communication Technology with specialism in Software Engineering">
+                            Information & Communication Technology with specialism in Software
+                            Engineering</option>
+                        <option value="Information & Communication Technology with a specialism in Data Informatics">
+                            Information & Communication Technology with a specialism in Data
+                            Informatics</option>
+                        <option
+                            value="Information & Communication Technology with a specialism in Interactive Technology">
+                            Information & Communication Technology with a specialism in Interactive
+                            Technology</option>
+                        <option value="Business with Information Technology">Business with
+                            Information Technology</option>
+                        <option value="Business Administration">Business Administration</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Design and Media">Design and Media</option>
+                        <option value="International Studies">International Studies</option>
+                        <option value="Electrical and Electronic Engineering">Electrical and
+                            Electronic Engineering</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree - Jurusan  -->
+            <div id="degree" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Jurusan *</span>
+                <div>
+                    <select onchange="alumniDetailJurusan(this)" class="js-select2" name="jurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Computing, Technology & Games Development">Computing,
+                            Technology & Games Development</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Business, Management, Marketing, Tourism & Media">Business,
+                            Management, Marketing, Tourism & Media</option>
+                        <option value="Accounting, Banking, Finance and Actuarial">Accounting,
+                            Banking, Finance and Actuarial</option>
+                        <option value="Animation & Visual Effects">Animation & Visual Effects
+                        </option>
+                        <option value="Industrial Design & Brand Management">Industrial Design &
+                            Brand Management</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Master - Jurusan  -->
+            <div id="master" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="jurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Computing">Computing (By Research)</option>
+                        <option value="Data Science and Business Analytics">Data Science and
+                            Business Analytics</option>
+                        <option value="Business Administration">Business Administration</option>
+                        <option value="Philosophy in Management">Philosophy in Management</option>
+                        <option value="Project Management">Project Management</option>
+                        <option value="Business Administration">Business Administration</option>
+                        <option value="Technology Management">Technology Management</option>
+                        <option value="Information Technology Management">Information Technology
+                            Management</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Global Marketing Management">Global Marketing Management
+                        </option>
+                        <option value="International Business Communications">International Business
+                            Communications</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Accounting in Forensic Analysis">Accounting in Forensic
+                            Analysis</option>
+                        <option value="Philosophy in Engineering">Philosophy in Engineering</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- PhD - Jurusan  -->
+            <div id="phd" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="jurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Computing">Computing</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Management">Management</option>
+                        <option value="Technology">Technology</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Student - Detail Jurusan Validation -->
+            <script>
+                function alumniDetailJurusan(jurusan) {
+                    switch (jurusan.value) {
+                        case "Computing, Technology & Games Development":
+                            document.getElementById("degreeComputing").style.display = "block";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "block";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            break;
+                        case "Engineering":
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "block";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "none";
+                            document.getElementById("degreeEngineeringSemester").style.display = "block";
+                            break;
+                        case "Business, Management, Marketing, Tourism & Media":
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "block";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "block";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            break;
+                        case "Accounting, Banking, Finance and Actuarial":
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "block";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "block";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            break;
+                        case "Animation & Visual Effects":
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "block";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "block";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            break;
+                        case "Industrial Design & Brand Management":
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "block";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "block";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            break;
+                        default:
+                            document.getElementById("degreeComputing").style.display = "none";
+                            document.getElementById("degreeEngineering").style.display = "none";
+                            document.getElementById("degreeBusiness").style.display = "none";
+                            document.getElementById("degreeAccounting").style.display = "none";
+                            document.getElementById("degreeAnimation").style.display = "none";
+                            document.getElementById("degreeIndustrial").style.display = "none";
+                            // Semester
+                            document.getElementById("degreeSemester").style.display = "none";
+                            document.getElementById("degreeEngineeringSemester").style.display = "none";
+                            break;
+                    }
+                }
+            </script>
+
+            <!-- Degree Computing - Jurusan  -->
+            <div id="degreeComputing" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Detail Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="detailJurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Information Technology with specialism in Information Systems Security">
+                            Information Technology with specialism in Information Systems Security
+                        </option>
+                        <option value="Information Technology with specialism in Network Computing">
+                            Information Technology with specialism in Network Computing</option>
+                        <option value="Information Technology with specialism in Mobile Technology">
+                            Information Technology with specialism in Mobile Technology</option>
+                        <option value="Information Technology with specialism in Cloud Computing">
+                            Information Technology with specialism in Cloud Computing</option>
+                        <option value="Information Technology with specialism in Business Information Systems">
+                            Information Technology with specialism in Business Information Systems
+                        </option>
+                        <option value="Information Technology with specialism in Internet of Things">
+                            Information Technology with specialism in Internet of Things</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Computer Science with a specialism in Data Analytics">
+                            Computer Science with a specialism in Data Analytics</option>
+                        <option value="Computer Science with a specialism in Digital Forensics">
+                            Computer Science with a specialism in Digital Forensics</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Computer Science Intelligent System">Computer Science
+                            Intelligent System</option>
+                        <option value="Computer Games Development">Computer Games Development
+                        </option>
+                        <option value="Multimedia Technology">Multimedia Technology</option>
+                        <option value="Multimedia Technology with a specialism in VR/AR">Multimedia
+                            Technology with a specialism in VR/AR</option>
+                        <option value="Business Information Technology">Business Information
+                            Technology</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Forensic Computing">Forensic Computing</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree Engineering - Jurusan  -->
+            <div id="degreeEngineering" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Detail Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="detailJurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Electrical & Electronic Engineering">Electrical & Electronic
+                            Engineering</option>
+                        <option value="Mechatronic Engineering">Mechatronic Engineering</option>
+                        <option value="Telecommunication Engineering">Telecommunication Engineering
+                        </option>
+                        <option value="Computer Engineering">Computer Engineering</option>
+                        <option value="Petroleum Engineering">Petroleum Engineering</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree Business - Jurusan  -->
+            <div id="degreeBusiness" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Detail Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="detailJurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Business Management">Business Management</option>
+                        <option value="Business Management with specialism in E-Business">Business
+                            Management with specialism in E-Business</option>
+                        <option value="International Business Management">International Business
+                            Management</option>
+                        <option value="Marketing Management">Marketing Management</option>
+                        <option value="Marketing Management with a specialism in Digital Marketing">
+                            Marketing Management with a specialism in Digital Marketing</option>
+                        <option value="Human Resource Management">Human Resource Management</option>
+                        <option value="Tourism Management">Tourism Management</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree Accounting - Jurusan  -->
+            <div id="degreeAccounting" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Detail Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="detailJurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Accounting and Finance">Accounting and Finance</option>
+                        <option value="Accounting and Finance with a specialism in Forensic Accounting">
+                            Accounting and Finance with a specialism in Forensic Accounting</option>
+                        <option value="Accounting and Finance with a specialism in Taxation">
+                            Accounting and Finance with a specialism in Taxation</option>
+                        <option value="Accounting and Finance with a specialism in Forex and Investments">
+                            Accounting and Finance with a specialism in Forex and Investments
+                        </option>
+                        <option value="Accounting and Finance with a specialism in Internal Audit">
+                            Accounting and Finance with a specialism in Internal Audit</option>
+                        <option value="Banking and Finance">Banking and Finance</option>
+                        <option value="Banking and Finance with a specialism in Financial Technology">
+                            Banking and Finance with a specialism in Financial Technology</option>
+                        <option value="Banking and Finance with a specialism in Investments and Risk Management">
+                            Banking and Finance with a specialism in Investments and Risk Management
+                        </option>
+                        <option value="Actuarial Studies">Actuarial Studies</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree Animation - Jurusan  -->
+            <div id="degreeAnimation" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Detail Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="detailJurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Animation">Animation</option>
+                        <option value="VFX: Visual Effects and Concept Design">VFX: Visual Effects
+                            and Concept Design</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree Industrial - Jurusan  -->
+            <div id="degreeIndustrial" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Detail Jurusan *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="detailJurusan">
+                        <option disabled selected>Please Select</option>
+                        <option value="Product Design">Product Design</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Foundation Semester -->
+            <div id="foundationSemester" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Semester *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="semester">
+                        <option disabled selected>Please Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Diploma Semester -->
+            <div id="diplomaSemester" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Semester *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="semester">
+                        <option disabled selected>Please Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree Semester -->
+            <div id="degreeSemester" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Semester *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="semester">
+                        <option disabled selected>Please Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Degree - Engineering Semester -->
+            <div id="degreeEngineeringSemester" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Semester *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="semester">
+                        <option disabled selected>Please Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Master Semester -->
+            <div id="masterSemester" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Semester *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="semester">
+                        <option disabled selected>Please Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- PhD - Engineering Semester -->
+            <div id="phdSemester" style="display:none" class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Semester *</span>
+                <div>
+                    <select onchange="" class="js-select2" name="semester">
+                        <option disabled selected>Please Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+            <!-- Back -->
+            <div class="rs1-wrap-input100">
+                <a href="/public">
+                    <button class="contact100-form-btn" type="button">
+                        <span>
+                            Back
+                            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </a>
+            </div>
+
+            <!-- Submit -->
+            <div class="rs1-wrap-input100">
+                <button class="contact100-form-btn" type="submit" name="Submit">
+                    <span>
+                        Submit
+                        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Include Footer -->
+<%- include public-layout/footer.ejs %>
