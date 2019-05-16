@@ -356,5 +356,4 @@ app.delete('/delete/(:id)', redirectLogin, function(req, res, next) {
 	})
 })
 
-
 module.exports = app

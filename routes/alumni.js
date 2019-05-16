@@ -295,5 +295,16 @@ app.delete('/delete/(:id)', redirectLogin, function(req, res, next) {
 	})
 })
 
+//Logout
+app.post('/logout', redirectLogin, function(req, res){
+    req.session.destroy(err => {
+        if(err){
+            return res.redirect('/dashboard')
+        }
+        res.clearCookie('sid')
+        res.redirect('/')
+    })
+})
+
 
 module.exports = app
