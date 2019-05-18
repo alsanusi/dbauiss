@@ -143,8 +143,7 @@ app.route('/student')
             tanggalLahir: '',
             status: '',
             jurusan: '',
-            detailJurusan: '',
-            semester: ''
+            detailJurusan: ''
         })
     })
     .post(function(req, res){
@@ -171,8 +170,7 @@ app.route('/student')
                 tanggalLahir: req.sanitize('tanggalLahir').escape().trim(),
                 status: req.sanitize('status').escape().trim(),            
                 jurusan: req.sanitize('jurusan'),
-                detailJurusan: req.sanitize('detailJurusan'),
-                semester: req.sanitize('semester').escape().trim()
+                detailJurusan: req.sanitize('detailJurusan')
             }
             req.getConnection(function(error, con){
                 //Validation for Student Status
@@ -211,8 +209,7 @@ app.route('/student')
                             tanggalLahir: student.tanggalLahir,
                             status: student.status,
                             jurusan: student.jurusan,
-                            detailJurusan: student.detailJurusan,
-                            semester: student.semester
+                            detailJurusan: student.detailJurusan
                         })
                     } else {
                         if(tpNumberValidation(result, tpNumber) > 0){
@@ -237,8 +234,7 @@ app.route('/student')
                                         tanggalLahir: student.tanggalLahir,
                                         status: student.status,
                                         jurusan: student.jurusan,
-                                        detailJurusan: student.detailJurusan,
-                                        semester: student.semester
+                                        detailJurusan: student.detailJurusan
                                     })
                                 } else {
                                     req.flash('success', 'Student Data Input Successfully!')
@@ -268,8 +264,7 @@ app.route('/student')
                 tanggalLahir: req.body.tanggalLahir,
                 status: req.body.status,
                 jurusan: req.body.jurusan,
-                detailJurusan: req.body.detailJurusan,
-                semester: req.body.semester
+                detailJurusan: req.body.detailJurusan
             })
         }
     })

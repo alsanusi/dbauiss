@@ -140,8 +140,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-element-list mg-t-30">
                         <div class="cmp-tb-hd">
-                            <h2>Edit Data Input</h2>
-                            <p>Edit (<code>.<%= namaLengkap %></code>) Student Data.</p>
+                            <h2>Convert Student Data to Alumni</h2>
+                            <p>Convert (<code>.<%= namaLengkap %></code>) Student Data.</p>
                         </div>
                         <!-- Validation Input -->
                         <div class="cmp-tb-hd">
@@ -152,22 +152,11 @@
                                 <p><%- messages.error %></p>
                             <%} else if(messages.success){ %>
                                 <h2 style="color:#d82436">Success to Input!</h2>
-                                <p>Successfully insert the <b style="color:#d82436">data-student</b>.</p>
+                                <p>Successfully convert the <b style="color:#d82436">data-student</b>.</p>
                             <% } %>
                         </div>
                         <div class="row">
-                            <form name="edit-student" action="/student/edit/<%= id %>" method="POST">
-                                <!-- TP Number -->
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group ic-cmp-int">
-                                        <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-support"></i>
-                                        </div>
-                                        <div class="nk-int-st">
-                                            <input type="text" class="form-control" name="tpNumber" value="<%= tpNumber %>" Placeholder="TP Number">
-                                        </div>
-                                    </div>
-                                </div>
+                            <form name="edit-student" action="/student/convert/<%= id %>" method="POST">
                                 <!-- Nama Lengkap -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group ic-cmp-int">
@@ -440,13 +429,53 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Tahun Kelulusan -->
+                                <div id="tahunKelulusan" style="display:block" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-edit"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" name="tahunKelulusan" Placeholder="Tahun Kelulusan">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Pekerjaan -->
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-star"></i>
+                                        </div>
+                                        <div class="bootstrap-select fm-cmp-mg">
+                                            <select class="selectpicker" name="pekerjaan">
+                                                <option disabled selected>Job Areas</option>
+                                                <option value="Information Technology">Information Technology</option>
+                                                <option value="Business & Marketing">Business & Marketing</option>
+                                                <option value="Multimedia">Multimedia</option>
+                                                <option value="Engineering">Engineering</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Details Pekerjaan -->
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-star"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" name="pekerjaanDetails" Placeholder="Job Details">
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Submit -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
                                             <div class="btn-demo-notika">
                                                 </br>
-                                                <button type="submit" name="Submit" value="Edit" class="btn btn-primary notika-btn-primary">Edit Student Data</button>
+                                                <button type="submit" name="Submit" value="Edit" class="btn btn-primary notika-btn-primary">Convert Student Data</button>
                                                 <input type="hidden" name="_method" value="PUT" />
                                             </div>
                                         </div>

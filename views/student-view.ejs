@@ -158,9 +158,9 @@
                                         <th>Status</th>
                                         <th>Jurusan</th>
                                         <th>Detail Jurusan</th>
-                                        <th>Semester</th>
                                         <th>Edit Data</th>
                                         <th>Remove Data</th>
+                                        <th>Convert Data to Alumni</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -179,7 +179,6 @@
                                         <td><%= student.status %></td>
                                         <td><%= student.jurusan %></td>
                                         <td><%= student.detailJurusan %></td>
-                                        <td><%= student.semester %></td>
                                         <td>
                                             <a href="/student/edit/<%= student.id %>"><button class="btn btn-primary notika-btn-primary">Edit Data</button></a>
                                         </td>
@@ -191,6 +190,9 @@
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                 </form>
                                             </form>
+                                        </td>
+                                        <td>
+                                            <a href="/student/convert/<%= student.id %>"><button class="btn btn-primary notika-btn-primary" style="background-color:#00c292;">Convert to Alumni</button></a>
                                         </td>
                                     </tr>
                                 <% }) %>

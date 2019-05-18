@@ -56,6 +56,7 @@ app.route('/input')
         req.assert('alamat', 'Required Alamat').notEmpty()
         req.assert('nomorTelepon', 'Required Nomor Telepon').notEmpty()
         req.assert('tanggalLahir', 'Required Tanggal Lahir').notEmpty()
+        req.assert('tahunKelulusan', 'Required Tahun Kelulusan').notEmpty()
         req.assert('pekerjaanDetails', 'Required Job Details').notEmpty()
 
         var errors = req.validationErrors()
@@ -294,17 +295,5 @@ app.delete('/delete/(:id)', redirectLogin, function(req, res, next) {
 		})
 	})
 })
-
-//Logout
-app.post('/logout', redirectLogin, function(req, res){
-    req.session.destroy(err => {
-        if(err){
-            return res.redirect('/dashboard')
-        }
-        res.clearCookie('sid')
-        res.redirect('/')
-    })
-})
-
 
 module.exports = app
