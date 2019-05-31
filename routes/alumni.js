@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const genPdf = require('jspdf')
 
 //Session Checking
 const redirectLogin = (req, res, next) => {
@@ -28,6 +29,11 @@ app.get('/', redirectLogin, function(req, res){
             }
         })
     })
+})
+
+app.get('/generate-pdf', (req, res) => {
+    genPdf.text('Hello world!', 10, 10)
+    genPdf.save('a4.pdf')
 })
 
 //Alumni Data Input
