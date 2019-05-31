@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-const genPdf = require('jspdf')
+const pdf = require('pdfkit')
+const fs = require('fs')
 
 //Session Checking
 const redirectLogin = (req, res, next) => {
@@ -32,8 +33,12 @@ app.get('/', redirectLogin, function(req, res){
 })
 
 app.get('/generate-pdf', (req, res) => {
-    genPdf.text('Hello world!', 10, 10)
-    genPdf.save('a4.pdf')
+    var myDoc = new pdf;
+    myDoc.pipe(fs.createWriteStream('node.pdf'));
+    myDoc.font('Times-Roman')
+        .fontSize(48)
+        .text('NODE JS', 100, 100);
+    myDoc.end();
 })
 
 //Alumni Data Input
