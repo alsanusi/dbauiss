@@ -21,6 +21,7 @@
     "method-override": "^3.0.0",
     "mysql": "^2.16.0",
     "pdfkit": "^0.9.1",
+    "pdfmake": "^0.1.56",
     "promise-mysql": "^3.3.1"
   }
 }

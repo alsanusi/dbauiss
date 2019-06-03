@@ -12,6 +12,9 @@ const redirectLogin = (req, res, next) => {
     }
 }
 
+//
+var myPdfJson;
+
 //View All Alumni Data
 app.get('/', redirectLogin, function(req, res){
     req.getConnection(function(error, con){
@@ -23,6 +26,7 @@ app.get('/', redirectLogin, function(req, res){
                     data: ''
                 })
             } else {
+                myPdfJson = rows
                 res.render('alumni-view', {
                     title: 'Alumni List',
                     data: rows
@@ -34,10 +38,15 @@ app.get('/', redirectLogin, function(req, res){
 
 app.get('/generate-pdf', (req, res) => {
     var myDoc = new pdf;
+    var stringifyJson = JSON.stringify(myPdfJson, null, 2)
     myDoc.pipe(fs.createWriteStream('node.pdf'));
-    myDoc.font('Times-Roman')
-        .fontSize(48)
-        .text('NODE JS', 100, 100);
+    // myDoc.font('Times-Roman')
+    //     .fontSize(10)
+    //     .text(stringifyJson, 100, 100);
+    myDoc.text(stringifyJson, {
+        fontSize: '10',
+        align: 'justify'
+        });
     myDoc.end();
 })
 
