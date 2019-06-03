@@ -7,7 +7,7 @@ const config = require('../config')
 const adminCredentials = { 
     id: '1',
     username: 'admin', 
-    pass: 'a'
+    pass: '@uiss20!9'
 }
 
 //Session Checking

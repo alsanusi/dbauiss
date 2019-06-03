@@ -113,7 +113,7 @@ app.get('/generate-pdf', (req, res) => {
     //Build the PDF
     var pdfDoc = printer.createPdfKitDocument(myTableLayout)
     //Writing to disk
-    pdfDoc.pipe(fs.createWriteStream('node.pdf'))
+    pdfDoc.pipe(fs.createWriteStream('alumniReport.pdf'))
     pdfDoc.end()
 })
 
