@@ -8,6 +8,7 @@ const adminCredentials = {
     id: '1',
     username: 'admin', 
     pass: '@uiss20!9'
+    // pass: 'a'
 }
 
 //Session Checking

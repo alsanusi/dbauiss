@@ -4,7 +4,6 @@ const app = express()
 const pdfPrinter = require('pdfmake')
 const fs = require('fs')
 
-
 //Font Files
 var fonts = {
     Roboto: {
@@ -25,13 +24,8 @@ const redirectLogin = (req, res, next) => {
     }
 }
 
-//
+//Global Variable
 var myPdfJson
-// var alumniId, alumniName, alumniEmail,
-//     alumniDaerahAsal, alumniStatus, alumniDetailPekerjaan, 
-//     alumniNomorTelepon
-var bodyData = []
-
 
 //View All Alumni Data
 app.get('/', redirectLogin, function (req, res) {
@@ -54,18 +48,10 @@ app.get('/', redirectLogin, function (req, res) {
     })
 })
 
-//Using PdfMake
+//GeneratePdf
 app.get('/generate-pdf', (req, res) => {
 
-    // myPdfJson.forEach(function(alumniData){
-    //     alumniId = alumniData.id
-    //     alumniName = alumniData.namaLengkap
-    //     alumniEmail = alumniData.email
-    //     alumniDaerahAsal = alumniData.daerahAsal
-    //     alumniStatus = alumniData.status
-    //     alumniDetailPekerjaan = alumniData.pekerjaanDetails
-    //     alumniNomorTelepon = alumniData.nomorTelepon
-    // })
+    var bodyData = []
 
     myPdfJson.forEach(function (alumniData) {
         var dataRow = []
@@ -110,12 +96,18 @@ app.get('/generate-pdf', (req, res) => {
         }
     }
 
+    generatePdf(myTableLayout).then(res.redirect('/dashboard'))
+
+})
+
+//GeneratePdf
+async function generatePdf(tableLayout) {
     //Build the PDF
-    var pdfDoc = printer.createPdfKitDocument(myTableLayout)
+    var pdfDoc = printer.createPdfKitDocument(tableLayout)
     //Writing to disk
     pdfDoc.pipe(fs.createWriteStream('alumniReport.pdf'))
     pdfDoc.end()
-})
+}
 
 app.get('/list', (req, res) => {
     req.getConnection(function (error, con) {
@@ -374,7 +366,6 @@ app.route('/edit/(:id)')
         }
     })
 
-
 // Alumni Data Remove
 app.delete('/delete/(:id)', redirectLogin, function (req, res, next) {
     var alumni = {
@@ -396,17 +387,5 @@ app.delete('/delete/(:id)', redirectLogin, function (req, res, next) {
         })
     })
 })
-
-//Using PdfKit
-// app.get('/generate-pdf', (req, res) => {
-//     var myDoc = new pdf;
-//     var stringifyJson = JSON.stringify(myPdfJson, null, 2)
-//     myDoc.pipe(fs.createWriteStream('node.pdf'));
-//     myDoc.text(stringifyJson, {
-//         fontSize: '10',
-//         align: 'justify'
-//         });
-//     myDoc.end();
-// })
 
 module.exports = app
