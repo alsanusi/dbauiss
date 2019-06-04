@@ -1,5 +1,21 @@
 const express = require('express')
 const app = express()
+const pdfPrinter = require('pdfmake')
+const fs = require('fs')
+
+//Global Variable
+var myPdfJson
+
+//Font Files
+var fonts = {
+    Roboto: {
+        normal: 'fonts/Roboto-Regular.ttf',
+        bold: 'fonts/Roboto-Medium.ttf',
+        italics: 'fonts/Roboto-Italic.ttf',
+        bolditalics: 'fonts/Roboto-MediumItalic.ttf'
+    }
+}
+const printer = new pdfPrinter(fonts)
 
 //Session Checking
 const redirectLogin = (req, res, next) => {
@@ -29,6 +45,7 @@ app.get('/', redirectLogin,  function(req, res){
                     data: ''
                 })
             } else {
+                myPdfJson = rows
                 res.render('student-view', {
                     data: rows
                 })
@@ -36,6 +53,69 @@ app.get('/', redirectLogin,  function(req, res){
         })
     })
 })
+
+//GeneratePdf
+app.get('/generate-pdf', (req, res) => {
+
+    var bodyData = []
+
+    myPdfJson.forEach(function (studentData) {
+        var dataRow = []
+        dataRow.push(studentData.id)
+        dataRow.push(studentData.tpNumber)
+        dataRow.push(studentData.namaLengkap)
+        dataRow.push(studentData.nomorTelepon)
+        dataRow.push(studentData.daerahAsal)
+        dataRow.push(studentData.status)
+        dataRow.push(studentData.jurusan)
+        dataRow.push(studentData.detailJurusan)
+        bodyData.push(dataRow)
+    })
+
+    var myTableLayout = {
+        pageOrientation: 'landscape',
+        content: [{
+                text: 'AUISS Student Data List',
+                style: 'header'
+            },
+            {
+                text: 'List of Asia Pacific University Indonesian Student Society Student Data.',
+                style: 'subHeader',
+                lineHeight: 2
+            },
+            {
+                layout: 'headerLineOnly',
+                table: {
+                    widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+                    lineHeight: 1,
+                    body: bodyData
+                }
+            }
+        ],
+        styles: {
+            header: {
+                fontSize: 25,
+                bold: true
+            },
+            subHeader: {
+                fontSize: 20
+            }
+        }
+    }
+
+    generatePdf(myTableLayout).then(res.redirect('/dashboard'))
+
+})
+
+//GeneratePdf
+async function generatePdf(tableLayout) {
+    var tempData;
+    //Build the PDF
+    var pdfDoc = printer.createPdfKitDocument(tableLayout)
+    //Writing to disk
+    pdfDoc.pipe(fs.createWriteStream('./report/studentReport.pdf'))
+    pdfDoc.end()
+}
 
 //Student Data Input
 app.route('/input')

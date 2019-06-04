@@ -7,7 +7,8 @@ const config = require('../config')
 const adminCredentials = { 
     id: '1',
     username: 'admin', 
-    pass: '@uiss20!9'
+    // pass: '@uiss20!9'
+    pass: 'a'
 }
 
 //Session Checking
@@ -218,7 +219,7 @@ app.get('/dashboard', redirectLogin, function(req, res){
     //Promise
     mysql.createConnection(config.database).then(function(conn){
         //Session
-        console.log(req.session)
+        // console.log(req.session)
         conn.query('SELECT * FROM alumniData').then( rows => {
             aData = rows;
             // Alumni Data - Overall

@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
-// const pdf = require('pdfkit')
 const pdfPrinter = require('pdfmake')
 const fs = require('fs')
+
+//Global Variable
+var myPdfJson
 
 //Font Files
 var fonts = {
@@ -23,9 +25,6 @@ const redirectLogin = (req, res, next) => {
         next()
     }
 }
-
-//Global Variable
-var myPdfJson
 
 //View All Alumni Data
 app.get('/', redirectLogin, function (req, res) {
@@ -105,21 +104,9 @@ async function generatePdf(tableLayout) {
     //Build the PDF
     var pdfDoc = printer.createPdfKitDocument(tableLayout)
     //Writing to disk
-    pdfDoc.pipe(fs.createWriteStream('alumniReport.pdf'))
+    pdfDoc.pipe(fs.createWriteStream('./report/alumniReport.pdf'))
     pdfDoc.end()
 }
-
-app.get('/list', (req, res) => {
-    req.getConnection(function (error, con) {
-        con.query('SELECT * FROM alumniData ORDER BY id DESC', function (err, rows, fields) {
-            if (err) {
-                req.flash('error', err)
-            } else {
-                res.json(rows)
-            }
-        })
-    })
-})
 
 //Alumni Data Input
 app.route('/input')
