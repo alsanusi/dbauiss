@@ -182,7 +182,7 @@ app.route('/input')
                     student.detailJurusan = "-"
                     break;
                 }
-                con.query('SELECT tpNumber from studentdata', function(err, result){
+                con.query('SELECT tpNumber from studentData', function(err, result){
                     if(err){
                         req.flash('error', err)
                         res.render('student-input',{
